@@ -1,0 +1,42 @@
+@import '../../../../core/styles/variables';
+.main-container{background: WHITE; border-radius: 10px;}
+.padding{padding-left: 1em;}
+.margin{margin-top: 2px;}
+
+.title {
+    color: mat-color($primary);
+    font-weight: bold;
+    font-size: $font-size-14;
+    margin-left: 1em;
+    margin-bottom: 1em;
+    margin-top: 1em;
+  }
+  button{
+    width: 98%;
+  }
+  input{
+    max-height: 44px;
+  }
+  mat-chip-list{
+    padding: 0px 0px;
+  }
+  .mat-chip-list-wrapper {
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    align-items: center;
+    margin: -7px;
+    max-height: 40px;
+}
+@media (max-width:500px){
+
+  .input-reposive{
+    padding-left: 1em;
+
+  }
+  button {
+    margin-left: 55%;
+    margin-bottom: 15px;
+  }
+  
+}  

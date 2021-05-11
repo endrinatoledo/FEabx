@@ -1,0 +1,49 @@
+
+<mat-card style="margin-top: 2%;">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row">
+                        
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end center">
+            <i class="material-icons color-icons" [matMenuTriggerFor]="appMenu">more_horiz</i>
+        </div>
+    </div>
+    <div class="row">
+        <div fxLayout="column" fxFlex="30%" class="w-20 mq-w-90" >
+            <div fxLayout="row"  fxLayoutAlign="center center">
+                    <div *ngIf="group.img; else elseBlock"><ngx-avatar src="{{group.img}}" ></ngx-avatar></div>
+                    <ng-template #elseBlock><ngx-avatar src="assets/images/group-defaul.png" ></ngx-avatar></ng-template>
+             </div>
+        </div>
+        <div fxLayout="column" fxFlex="70%" class="w-80 mq-w-90" >
+                <div fxLayout="row" class="groupName font" class="margin-bottom">
+                        <mat-card-subtitle class="groupName">{{group.name}}</mat-card-subtitle>
+                </div>
+                <mat-card-content class="margin-bottom">{{group.description}}</mat-card-content>
+                <div fxLayout="row" class="margin-bottom">
+                     <mat-card-content class="font">Lider:</mat-card-content>
+                    <mat-card-content class="margin-lef">{{leader}}</mat-card-content>     
+                </div>
+                <div fxLayout="row" class="margin-bottom">
+                    <mat-card-content class="font">Etiquetas:</mat-card-content>
+                    <mat-card-content class="margin-lef-2">{{tags}}</mat-card-content>     
+                </div>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxLayout="row" fxLayoutAlign="space-between">
+                    <i class="material-icons color-icons">toc</i> <mat-card-content class="margin-top">{{NumberNotes}} notas</mat-card-content> 
+                    <span (click)="toDetailsNotes(group)" >Ver</span>      
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end center">
+                    <i class="material-icons color-icons" style="margin-right: 3px;">group</i>
+                    <app-list-participants [Group]="group" ></app-list-participants>
+            </div>
+        </div> 
+</mat-card>
+
+<mat-menu #appMenu="matMenu">
+    <button mat-menu-item (click)="toDetails(group)">Detalles</button>
+    <button mat-menu-item *ngIf="rol==='1,2'"  class="color-red" (click)="OpenModalEliminar(group)">Eliminar</button>
+</mat-menu>

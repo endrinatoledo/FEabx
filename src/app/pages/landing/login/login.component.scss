@@ -1,0 +1,41 @@
+@import '../../../core/styles/variables';
+
+.title {
+  font-weight: bold;
+  font-size: $font-size-28;
+  color: $light-gray-font;
+}
+
+.a-password-recovery {
+  color: $light-gray-font;
+  font-size: $font-size-14;
+  cursor: pointer !important;
+}
+
+.a-create-account {
+ color:$dark-primary;
+  font-size: $font-size-14;
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+  cursor: pointer !important;
+}
+
+.button-submit {
+  span {
+    color: $white-color;
+  }
+
+}
+
+.opacity {
+  background-color: rgb(0, 0, 0);
+  opacity: 0.4;
+}
+
+.full-size{
+  height: 100%;
+  width: 100%;
+}
+

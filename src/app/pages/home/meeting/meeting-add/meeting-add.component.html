@@ -1,0 +1,130 @@
+<div fxLayout="column" class="main-container">
+    <div fxLayout="row" >
+      <span class="title">Agregar</span>
+    </div>
+    <form  class="form-container" (keyup.enter)="addNote()"  [formGroup]="formCreateMeeting">
+      <div
+          fxFlex.lt-sm="95%"
+          fxLayout="row wrap"
+          fxLayoutGap="1%">
+        <div
+          fxFlex="24% "
+          fxFlex.lt-md="24%"
+          fxFlex.lt-sm="99%"
+          class="padding"
+        >
+            <mat-form-field appearance="outline" class="w-100 " >
+                <mat-label>
+                Titulo
+                </mat-label>
+                <input matInput type="text"  formControlName="title">
+            </mat-form-field>
+        </div>
+        <div
+          fxFlex="24% "
+          fxFlex.lt-md="24%"
+          fxFlex.lt-sm="99%"
+          class="input-reposive"
+        >
+          <mat-form-field appearance="outline" class="w-100 " >
+              <mat-label>
+              Descripcion
+              </mat-label>
+              <input matInput type="text"  formControlName="descrition">
+          </mat-form-field>
+        </div>
+        <div
+          fxFlex="14%"
+          fxFlex.lt-md="14%"
+          fxFlex.lt-sm="99%"
+          class="input-reposive"
+        >
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Tipo</mat-label>
+            <mat-select  type="text" formControlName="type" >
+              <mat-option value="Asignacion" >
+              Asignacion
+              </mat-option>
+              <mat-option value="Acuerdo" >
+                Acuerdo
+              </mat-option>
+              <mat-option value="Información" >
+                Información
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+        <div
+        fxFlex="16%"
+        fxFlex.lt-md="16%"
+        fxFlex.lt-sm="99%"
+        class="input-reposive"
+        >
+        <mat-form-field class="w-100" appearance="outline" >
+          <mat-label *ngIf="isShow">
+            <mat-icon>persons</mat-icon>
+           Responsable
+          </mat-label>
+          <mat-label *ngIf="!isShow">
+            <mat-icon>persons</mat-icon>
+            Usuario
+          </mat-label>
+          <mat-chip-list #userChipList aria-label="Usuario a asignar" ngDefaultControl formControlName="userToAssign">
+            <mat-chip *ngIf="selectedUser"
+                      [selectable]=true
+                      [removable]=true
+                      color="accent"
+                      (removed)="removeUser()"
+                      style="margin-top: -5px;margin-bottom: -0.3px"
+                      >
+              <span class="chip-content">{{selectedUser.firstName}} {{selectedUser.lastName}}</span>
+              <mat-icon matChipRemove *ngIf=true>cancel</mat-icon>
+            </mat-chip>
+            <input matInput
+                   *ngIf="!selectedUser"
+                   formControlName="userToAssign"
+                   #userInput
+                   [matAutocomplete]=userAutoComplete
+                   [matChipInputFor]="userChipList"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   [matChipInputAddOnBlur]=true>
+          </mat-chip-list>
+          <mat-autocomplete #userAutoComplete="matAutocomplete" (optionSelected)="selectUser()">
+            <mat-option *ngFor="let user of usersFilteredOptions | async" [value]="user">
+              <div fxLayout="row" fxLayoutGap="2%" fxLayoutAlign="start center">
+                <ngx-avatar src="{{user.img}}" [name]="user.firstName + ' ' + user.lastName"
+                            size="20" class="avatar-container">
+                </ngx-avatar>
+                <span class="title-span"
+                      matTooltip="{{user.firstName}} {{user.lastName}}">{{user.firstName}} {{user.lastName}}</span>
+                <span class="subtitle-span" matTooltip="{{user.email}}">{{user.email}}</span>
+              </div>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div
+        fxFlex="10% "
+        fxFlex.lt-md="10%"
+        fxFlex.lt-sm="99%"
+        class="input-reposive"
+        >
+        <mat-form-field appearance="outline" class="w-100 " >
+          <mat-label id="date-label">
+            Fecha
+          </mat-label>
+          <input fxFill matInput [matDatepicker]="final" formControlName="date">
+          <mat-datepicker-toggle matSuffix [for]="final"></mat-datepicker-toggle>
+          <mat-datepicker #final></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div
+      fxFlex="5% "
+      fxFlex.lt-md="5%"
+      fxFlex.lt-sm="50%"
+      >
+      <button mat-raised-button color="primary" fxLayoutAlign="center center" class="white-font-color" style="margin-top: 5px;" (click)="addNote()" >Añadir</button>
+      </div>
+      </div>
+    </form>
+  </div>

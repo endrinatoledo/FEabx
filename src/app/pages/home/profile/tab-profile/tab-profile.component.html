@@ -1,0 +1,46 @@
+<div fxLayout="row" fxLayoutGap="3%" fxLayout.lt-sm="column" fxLayoutAlign="center center">
+  <form fxFlex="100%" [formGroup]="updateDataUser">
+    <div fxLayout="row">
+      <div fxLayout="column" fxFlex="100%" fxLayoutAlign="center center">
+        <div style="margin-top: 40px !important;">
+          <img [src]="src" style="width: 200px; height:200px;"/>
+        </div>
+<!--        <ngx-avatar [src]="src"></ngx-avatar>-->
+        <div style="margin-top: 40px !important;">
+          <div fxLayout="row" fxLayoutGap="5%" style="margin-bottom: 2em;">
+            <button #file mat-raised-button color="primary" style="color: white">Examinar...
+              <input style="opacity: 0; position:absolute; left:0px; top:0px; width:100%; height:100%;" type="file" size="60" name="image" (change)="changeListener($event)">
+            </button>
+          </div>
+        </div>
+        <div style="padding:20px">
+          <span>Formatos Validos: png, jpg, gif, jpeg.</span>
+        </div>
+      </div>
+      <div style="margin-top: 40px" fxLayout="column" fxFlex="50%">
+        <mat-form-field appearance="outline" class="w-100 m-top-1">
+          <mat-label> Nombre</mat-label>
+          <input matInput type="text" formControlName="firstName">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-100 m-top-1">
+          <mat-label>Apellido</mat-label>
+          <input matInput type="text" formControlName="lastName">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-100 m-top-1">
+          <mat-label>Correo</mat-label>
+          <input matInput type="email" formControlName="email">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-100 m-top-1">
+          <mat-label>Nombre de usuario</mat-label>
+          <input matInput type="text" formControlName="login">
+        </mat-form-field>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div fxLayout="row" class="margin" fxLayoutGap="3%" fxLayout.lt-sm="column" fxLayoutAlign="end center">
+      <!--      <button mat-button color="primary">Atras</button>-->
+      <button mat-raised-button color="primary" class="white-font-color" (click)="updateData()">Guardar</button>
+    </div>
+  </form>
+</div>
+

@@ -1,0 +1,21 @@
+@import '../../../core/styles/variables';
+
+label{
+    padding: 10px;
+    background:mat-color($primary); 
+    display: table;
+    color: #fff;
+     }
+
+
+input[type="file"] {
+    display: none;
+}
+
+@media screen and (max-width:500px) {
+    img{
+      width: 100px;
+      height: 100px;
+    }
+    
+  }

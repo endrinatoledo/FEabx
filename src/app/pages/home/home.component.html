@@ -1,0 +1,38 @@
+<div class="main-container" [class.is-mobile]="mobileQuery.matches">
+
+  <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
+
+    <mat-sidenav class="mat-elevation-z8 sidenav" #snav
+                 [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [disableClose]="!mobileQuery.matches"
+                 [ngStyle.lt-sm]="{'width.px': 200}"
+                 [fixedInViewport]="mobileQuery.matches" opened>
+      <div fxLayout="column" fxLayoutAlign="start center" class="h-100 w-100">
+        <img *ngIf="!mobileQuery.matches" class="logo-X" src="assets/images/logo-X.png" alt="Intelix">
+        <img *ngIf="mobileQuery.matches" class="logo-intelix" src="assets/images/logo-intelix.png" alt="Intelix">
+
+        <ng-container class="w-100" *ngFor="let menu of menus">
+          <app-menu class="w-100" [x]="menu" [active]="active" (click)="active = menu.id"></app-menu>
+        </ng-container>
+
+
+            </div>
+        </mat-sidenav>
+
+    <mat-sidenav-content fxLayout="column" class="page-wrap">
+
+      <app-toolbar [snav]="snav" username="{{username}}"></app-toolbar>
+
+          <main class="content" fxLayout="column" fxLayoutGap="1%">
+
+            <router-outlet></router-outlet>
+            </main>
+
+      <footer fxLayoutAlign="center center">
+        <h4>&#169; Intelix Synergy 2019</h4>
+      </footer>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
+</div>

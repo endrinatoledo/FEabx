@@ -1,0 +1,6 @@
+<div class="w-100 dashboard-container" fxLayout="column" fxLayoutGap="3%">
+    <app-group-container class="w-100" [groups]="groups" ></app-group-container>
+    <div fxLayout="row" fxLayoutGap="3%" fxLayout.lt-sm="column" fxLayoutAlign="center center">
+        <app-group-create fxLayout="column" fxFlex="93%" [ngStyle.lt-sm]="{'width.%' : 93}" class="dashboard-card-container"  ></app-group-create>
+    </div>
+</div>

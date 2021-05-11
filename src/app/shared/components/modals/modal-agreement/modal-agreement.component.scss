@@ -1,0 +1,66 @@
+@import '../../../../core/styles/variables';
+
+.title {
+  color: mat-color($primary) !important;;
+  font-weight: bold;
+  font-size: $font-size-14;
+}
+
+.mat-dialog-content {
+  max-height: initial !important;
+  overflow-y: auto;
+}
+
+.form-container {
+  margin-top: 4%;
+}
+
+.mat-option {
+  font-family: Roboto, sans-serif !important;
+  font-size: $font-size-14;
+}
+
+mat-divider {
+  background: BLACK;
+}
+
+mat-label {
+  color: mat-color($primary);
+  font-size: $font-size-14;
+}
+
+.mat-form-field-invalid {
+  mat-label {
+    color: RED;
+  }
+}
+
+.chip-content {
+  width: 125px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.avatar-container {
+  line-height: normal !important;
+}
+
+.title-span {
+  width: 125px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.subtitle-span {
+  width: 125px;
+  font-size: $font-size-10;
+  color: $light-gray-font;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}

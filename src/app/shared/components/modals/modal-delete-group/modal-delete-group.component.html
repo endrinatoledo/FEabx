@@ -1,0 +1,19 @@
+<div fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <span class="title">{{title}}</span>
+          <span fxFlex></span>
+          <button mat-icon-button color="primary" mat-dialog-close>
+            <mat-icon>highlight_off</mat-icon>
+          </button>
+        </div>
+        <mat-divider></mat-divider>
+       <p  fxLayoutAlign="center center">
+            ¿Está seguro que desea eliminar el grupo {{group.name}} de Agreement Box? Recuerde que al hacerlo, toda la información relacionada a él se elimina
+       </p>
+       <mat-divider></mat-divider>
+       <mat-dialog-actions fxLayoutAlign="center center">
+          <button mat-button color="primary" class="borde" mat-dialog-close>Cancelar</button>
+          <button mat-raised-button class="delete" (click)="deleteGroup(group)" mat-dialog-close>Eliminar</button>
+        </mat-dialog-actions>
+</div>
+      

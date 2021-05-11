@@ -1,0 +1,160 @@
+<div fxLayout="column" class="main-container" >
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <span class="title">{{title}}</span>
+    <span fxFlex></span>
+    <button mat-icon-button color="primary" mat-dialog-close>
+      <mat-icon>highlight_off</mat-icon>
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+  <form class="form-container" [formGroup]="formGroup">
+      <div
+      fxLayout="row wrap"
+      fxLayoutAlign="center center"
+      fxLayoutGap="2%">
+        <div
+          fxFlex="200% "
+          fxFlex.lt-md="200%"
+          fxFlex.lt-sm="100%"
+          >
+          
+          <mat-form-field appearance="outline" class="w-100">
+              <mat-label>
+                <mat-icon>group</mat-icon>
+                Grupo
+              </mat-label>
+              <input matInput type="text" formControlName="group" [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete" [displayWith]="groupDisplayWith">
+                <mat-option *ngFor="let option of groupFilteredOptions | async" [value]="option">
+                  {{option.name}}
+                </mat-option>
+              </mat-autocomplete>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100 m-top-1">
+            <mat-label>Reunion</mat-label>
+            <mat-select formControlName="meeting">
+              <mat-option *ngFor="let meet of meetings" [value]="meet" >
+              {{meet.title}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100 m-top-1">
+            <mat-label>
+              Título
+            </mat-label>
+            <input matInput type="text" formControlName="title">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100">
+              <mat-label>
+                Descripción
+              </mat-label>
+              <textarea matInput type="text" formControlName="description"></textarea>
+          </mat-form-field>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>
+              <mat-icon>persons</mat-icon>
+              Asignar a
+            </mat-label>
+            <mat-chip-list #userChipList aria-label="Usuario a asignar" ngDefaultControl formControlName="userToAssign">
+              <mat-chip *ngIf="selectedUser"
+                        [selectable]=true
+                        [removable]=true
+                        color="accent"
+                        (removed)="removeUser()">
+                <ngx-avatar *ngIf="selectedUser.img" [src]="selectedUser.img"
+                            size="20" class="avatar-container"></ngx-avatar>
+                <ngx-avatar *ngIf="!selectedUser.img" [name]="selectedUser.firstName + ' ' + selectedUser.lastName"
+                            size="20" class="avatar-container">
+                </ngx-avatar>
+                <span class="chip-content">{{selectedUser.firstName}} {{selectedUser.lastName}}</span>
+                <mat-icon matChipRemove *ngIf=true>cancel</mat-icon>
+              </mat-chip>
+              <input matInput
+                     formControlName="userToAssign"
+                     #userInput
+                     [matAutocomplete]=userAutoComplete
+                     [matChipInputFor]="userChipList"
+                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                     [matChipInputAddOnBlur]=true>
+            </mat-chip-list>
+            <mat-autocomplete #userAutoComplete="matAutocomplete" (optionSelected)="selectUser()">
+              <mat-option *ngFor="let user of usersFilteredOptions | async" [value]="user">
+                <div fxLayout="row" fxLayoutGap="2%" fxLayoutAlign="start center">
+                  <ngx-avatar src="{{user.img}}" [name]="user.firstName + ' ' + user.lastName"
+                              size="20" class="avatar-container">
+                  </ngx-avatar>
+                  <span class="title-span"
+                        matTooltip="{{user.firstName}} {{user.lastName}}">{{user.firstName}} {{user.lastName}}</span>
+                  <span class="subtitle-span" matTooltip="{{user.email}}">{{user.email}}</span>
+                </div>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <div fxLayout="row" fxLayout.lt-sm="row wrap" fxLayoutGap="2%" fxLayoutAlign="center center">
+            <mat-form-field fxFlex="50%"  fxFlex.lt-sm="100%" appearance="outline">
+              <mat-label id="date-label">
+                Fecha de Entrega
+              </mat-label>
+              <input fxFill matInput [matDatepicker]="final" formControlName="deliveryDate">
+              <mat-datepicker-toggle matSuffix [for]="final"></mat-datepicker-toggle>
+              <mat-datepicker #final></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="48%" fxFlex.lt-sm="100%" appearance="outline">
+              <mat-label>
+                Notificación
+              </mat-label>
+              <input matInput type="number" formControlName="notification">
+            </mat-form-field>
+          </div>
+
+
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>
+              <mat-icon>label</mat-icon>
+              Etiquetas
+            </mat-label>
+            <mat-chip-list #tagsChipList aria-label="Etiqueta" ngDefaultControl formControlName="tag">
+              <mat-chip *ngFor="let tag of tags" [selectable]=true color="accent"
+                        [removable]=true (removed)="removeTag(tag)">
+                {{tag}}
+                <mat-icon matChipRemove *ngIf=true>cancel</mat-icon>
+              </mat-chip>
+              <input formControlName="tag"
+                     [matChipInputFor]="tagsChipList"
+                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                     [matChipInputAddOnBlur]=true
+                     (matChipInputTokenEnd)="addTag($event)">
+            </mat-chip-list>
+          </mat-form-field>
+          <mat-form-field *ngIf="httpService.selectAssig" appearance="outline" class="w-100">
+            <mat-label>
+             Envia comentario o actualizacion
+            </mat-label>
+            <input matInput type="text" formControlName="commet">
+          </mat-form-field>
+          <mat-card  *ngIf="httpService.selectAssig" class="w-100" style="margin-bottom:10px">
+           <div fxLayout="column" fxFlex="80%"  >
+            <caption>Actualizaciones o avances</caption>
+            <table >
+              <tr *ngFor="let comment of Comments">
+                <td style="margin-top: 1px;" FxFlex="20%" > <ngx-avatar class="margin"  size="30" initialsSize="2" bgColor="grey" cornerRadius="4"  name="{{comment.users.firstName}} {{comment.users.lastName}}"></ngx-avatar></td>
+                <td FxFlex="30%" style="width: 80%;" >{{comment.description}}</td>
+                <td FxFlex="50%" style="width: 20%;" >{{comment.updatedAt}}</td>
+              </tr>
+            </table>
+           </div>
+          </mat-card>
+          
+
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+    <mat-dialog-actions fxLayoutAlign="center center">
+
+      <button mat-button color="primary" mat-dialog-close>Cancelar</button>
+      <button mat-raised-button color="primary" class="white-font-color" (click)="onSave()">Guardar</button>
+      <button mat-button *ngIf="httpService.selectAssig && httpService.selectAssig.status != 4 " mat-raised-button  class="white-font-color margin-top"color="primary" (click)="preClose()" >Pre Cerrar</button>
+    </mat-dialog-actions>
+  </form>
+</div>

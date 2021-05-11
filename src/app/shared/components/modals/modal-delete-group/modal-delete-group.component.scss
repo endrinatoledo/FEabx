@@ -1,0 +1,22 @@
+@import '../../../../core/styles/variables';
+
+.title {
+  color: mat-color($primary) !important;
+  font-weight: bold;
+  font-size: $font-size-14;
+}
+p{
+  margin:2em;
+  color:$light-gray-font;
+  font-weight: bold;
+  font-size: $font-size-16;
+  text-align: center;
+}
+.delete{
+  background-color: red;
+  color: white;
+}
+
+.borde{
+  border: rgba($color: #009688, $alpha: 1.0) 1px solid;
+} 

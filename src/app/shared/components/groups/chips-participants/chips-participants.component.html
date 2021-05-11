@@ -1,0 +1,14 @@
+<div fxLayout="row" fxLayoutGap="5%" class="borde-color" click="hola()">
+  <div fxLayout="column">
+    <ngx-avatar *ngIf="user!=null" initialsSize="2" bgColor="grey" cornerRadius="4" fxLayoutAlign="center center" name="{{user.firstName}} {{user.lastName}}" src="{{user.img}}"></ngx-avatar>
+    <ngx-avatar *ngIf="invitation!=null" initialsSize="2" bgColor="grey" cornerRadius="4" fxLayoutAlign="center center" name="{{invitation}}"></ngx-avatar>
+  </div>
+  <div fxLayout="column" fxFlex="50%" fxLayoutAlign="center center">
+    <h5 *ngIf="user!=null" id="h5" class="color">{{user.firstName}} {{user.lastName}}</h5>
+    <h5 *ngIf="invitation!=null" id="h5" class="color">{{invitation}}</h5>
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <mat-icon *ngIf="user!=null" (click)="deletePart(user)" class="color cursor ">cancel</mat-icon>
+    <mat-icon *ngIf="invitation!=null" (click)="deleteInv(invitation)" class="color cursor">cancel</mat-icon>
+  </div>
+</div>

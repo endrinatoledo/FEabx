@@ -1,0 +1,9 @@
+<div fxLayout="row"  fxLayoutGap="5%"  >
+    <div fxLayout="column" FxFlex="40%" class="info"  *ngIf="this.imagen">
+            <img sizes="5"  height="50" src={{this.imagen}}/>
+    </div>
+    <label fxLayout="column" FxFlex="40%" style="height:40px" > Seleccionar imagen
+        <input type="file"  size="60"  name="image" (change)="changeListener($event)"  >
+    </label> 
+</div>
+    

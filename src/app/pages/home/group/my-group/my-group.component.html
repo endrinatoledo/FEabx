@@ -1,0 +1,51 @@
+<div fxLayout="row" class="margin-botto">
+        <a href="">Grupos | Mis Grupos</a>
+</div>
+<div fxLayout="row" (keyup.enter)="searchGroup()" fxLayout.lt-sm="column" fxLayoutAlign="center center" >
+    <mat-card  fxFlex="80%"  >
+        <form class="form-container" [formGroup]="form" >
+            <div 
+                fxFlex.lt-sm="300px"
+                fxLayoutAlign="center center"
+                fxLayout="row wrap" 
+                fxLayoutGap="1%">
+                <mat-form-field   
+                    fxFlex="48% "
+                    fxFlex.lt-md="48%"
+                    fxFlex.lt-sm="100%" 
+                    appearance="outline">
+                        <mat-label>Buscar</mat-label>
+                        <input matInput type="text" formControlName="search" >
+                </mat-form-field>
+                 <mat-form-field  fxFlex="48% " fxFlex.lt-md="100%" fxFlex.lt-sm="100%" appearance="outline">
+                    <mat-label>Seleccionar </mat-label>
+                        <mat-select formControlName="optionFliter">
+                        <mat-option *ngFor="let option of optionList" [value]="option.id" >
+                            {{option.descriton}}
+                        </mat-option>
+                        </mat-select>
+                </mat-form-field>
+            </div>
+        </form>
+    </mat-card>
+</div>
+<div fxLayout="row" class="m-top"   fxLayoutAlign="center center">
+    <div fxFlex="80%"   fxLayoutGap="1%" fxLayout.lt-sm="column"  fxFlex.lt-sm="330px" >
+            <div 
+                fxLayoutAlign="center center"
+                fxLayout="row wrap" 
+                fxLayout.lt-sm="column" 
+                fxLayoutGap="1%"
+                fxLayoutAlign="flex-start">
+                 <app-card-my-group  
+                    *ngFor="let group of groups"  fxFlex="49% "
+                    fxFlex.lt-md="48%"
+                    fxFlex.lt-sm="0 1 calc(100%)" 
+                    (salida)="updateGroups(ent)"
+                    [group]="group"></app-card-my-group>
+                </div>
+            </div>
+        </div>
+    <div>
+</div>
+    

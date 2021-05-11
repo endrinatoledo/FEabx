@@ -1,0 +1,37 @@
+<div 
+fxLayout="row" 
+fxLayoutAlign="center center"
+fxLayoutGap="10%"
+>
+    <div fxLayout="column">
+        <p class="p-item" >Asignaciones :</p>
+    </div>
+    <div fxLayout="column" style="margin-top : 20px; margin-bottom : 10px;" >
+        <p >{{assignmentsLength}}</p>
+    </div>
+    <div fxLayout="column" class="p-item" ><p>Ptos. de Agenda :</p></div>
+    <div fxLayout="column" style="margin-top : 20px; margin-bottom : 10px;"  >
+        <p>0</p>
+    </div>
+</div>
+<div 
+fxLayout="row" 
+fxLayoutAlign="center center"
+fxLayoutGap="5%"
+>
+    <div fxLayout="column">
+        <p class="p-item"  >Acuerdo :</p>
+    </div>
+    <div style="margin-top : 10px; margin-bottom : 10px; " fxLayout="column" >
+        <p style=" margin-left: 45px;">{{agreementLength}}</p>
+     </div>
+    <div class="p-item" fxLayout="column" >
+        <p class="p-item" style="margin-left: 30px;" >Ptos. Sugeridos:</p>
+    </div>
+    <div style="margin-top : 10px; margin-bottom : 10px; " fxLayout="column"   >
+        <p style="margin-left: 20px;">0</p>
+    </div>
+</div>
+<h4 class="h4-participant">Participantes</h4>
+<p class="p-participant" *ngFor="let item of participants">-{{item.firstName}} {{item.lastName}} </p>
+

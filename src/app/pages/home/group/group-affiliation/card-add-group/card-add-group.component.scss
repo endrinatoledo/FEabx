@@ -1,0 +1,32 @@
+@import '../../../../../core/styles/variables';
+
+.font {
+  color: $light-gray-font;
+  font-weight: bold;
+  font-size: $font-size-18;
+
+}
+
+.margin {
+
+  margin-top: 1em;
+
+
+}
+
+.margin-buttom {
+
+  margin-top: 4.5em;
+}
+
+
+.card-add {
+  min-height: 240px;
+  min-width: 300px;
+}
+
+.button-color {
+  border-color: $gray-font $gray-font;
+}
+
+

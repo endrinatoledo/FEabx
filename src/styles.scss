@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'app/core/styles/abx-theme';
+@import 'app/core/styles/variables';
+@import 'app/core/styles/base';
+
+.custom-dialog-container .mat-dialog-container {
+  padding-top: 10px;
+}
+.binocular-icon svg{
+  fill: #AFABAB;
+}
+.sightview svg{
+  fill: #00536c!important;
+}

@@ -1,0 +1,38 @@
+@import '../../styles/variables';
+
+.menu-button {
+  color: white;
+  height: 80px;
+  width: 100%;
+  border-radius: 0;
+}
+
+.mat-menu-item {
+  color: mat-color($primary);
+}
+
+.submenu-li {
+  padding-left: 20%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+
+  .submenu-a {
+    cursor: pointer;
+    text-decoration: none;
+    color: $gray-font !important;
+  }
+}
+
+ul {
+  list-style: none none;
+  padding: 0;
+}
+
+@media screen and (max-width: 599px) {
+  .menu-button {
+    height: 50px;
+    font-size: 20px;
+    width: 100%;
+    text-align: left;
+  }
+}

@@ -1,0 +1,94 @@
+<div fxLayout="column" class="main-container">
+  <div fxLayout="row" >
+    <span class="title" *ngIf="!this.httpService.updateGroup">Crear grupo</span>
+    <span class="title" *ngIf="this.httpService.updateGroup">Editar grupo</span>
+  </div>
+  <mat-divider></mat-divider>
+  <form class="form-container"  [formGroup]="formCreateGroup">
+      <div 
+          fxFlex.lt-sm="95%"
+          fxLayout="row wrap" 
+          fxLayoutAlign="flex-end"
+          fxLayoutGap="2%">
+          <div
+            fxFlex="48% "
+            fxFlex.lt-md="48%"
+            fxFlex.lt-sm="99%"
+            class="padding"
+            >
+            <span class="sub-title">Informacion</span>
+            <mat-form-field appearance="outline" class="w-100 m-top-1" >
+                <mat-label>
+                Nombre
+                </mat-label>
+                <input matInput type="text"  formControlName="grpName">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100 m-top-1">
+                <mat-label>
+                Proposito
+                </mat-label>
+                <input matInput type="text" formControlName="grpDescription" >
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100 m-top-1">
+                <mat-label>
+                Etiquetas
+                </mat-label>
+                <input matInput type="text" >
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100 m-top-1 ">
+                <mat-label>Seleccionar grupo</mat-label>
+                <mat-select formControlName="grpSelectGrupo" >
+                  <mat-option *ngFor="let group of groups" [value]="group" >
+                    {{group.name}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <app-update-imagen (salida)="getImagen($event)" ></app-update-imagen>
+
+          </div>
+          <div
+            fxFlex="48% "
+            fxFlex.lt-md="48%"
+            fxFlex.lt-sm="99%"
+            class="padding"
+            >
+            <span class="sub-title">Participantes</span>
+                <mat-form-field appearance="outline" class="w-100 m-top-1">
+                    <mat-label>Seleccionar participante</mat-label>
+                    <mat-select formControlName="selectPart">
+                      <mat-option *ngFor="let user of users" [value]="user" >
+                        {{user.firstName}} {{user.lastName}} 
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div fxLayout="column" >
+                  <app-chips-participants (part)="DeletePartList($event)" style="margin-bottom: 1em;"  *ngFor="let part of participants" [user]="part" ></app-chips-participants>
+                </div>
+                <div fxLayout="row"  fxLayoutGap="2%" fxLayoutAlign="center center">
+                    <mat-form-field appearance="outline" fxFlex="80%"   fxFlex.lt-sm="74%">
+                        <mat-label>
+                        Invitar participante
+                        </mat-label>
+                        <input matInput type="text" formControlName="invitation"  >
+                        <mat-error *ngIf="hasError('invitation', 'pattern')">
+                            <mat-icon>cancel</mat-icon>
+                            Debe introducir un correo válido
+                          </mat-error>
+                    </mat-form-field>
+                    <button mat-raised-button color="primary"   fxFlex="18%"  fxFlex.lt-sm="30%" class="white-font-color margen-bottom-part" (click)="addInvitation('invitation', 'pattern')" >Agregar</button> 
+                    <button (click)="enlace_externo()" ></button>
+                  </div>
+                <div fxLayout="column" style="max-height: 120px;"  style="margin-bottom: 1em" >
+                    <div *ngFor="let item of listInvitations,let i = index" [attr.data-index]="i"  >
+                      <app-chips-participants (part)="DeletePartList($event)" *ngIf="2>i" style="margin-bottom: 1em;" (deleteInvitationPart)="deleteInvitation($event)" [invitation]="item" ></app-chips-participants>
+                    </div>
+                    <span  fxLayoutAlign="center center" class="margin-inv color-inv" *ngIf="listInvitations.length>2"> +{{this.listInvitations.length-2}} Invitaciones </span>
+                </div>
+          </div>
+          <div fxFlex="100%" >
+              <mat-divider></mat-divider>
+              <button mat-raised-button color="primary"  type="submit"   class="white-font-color  margen-bottom" (click)="onSaveGroup()" >Guardar</button>
+          </div>
+        </div>
+  </form>
+</div>

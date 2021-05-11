@@ -1,0 +1,57 @@
+<form >
+    <div fxLayout="row" fxLayoutGap="10%" >
+        <div fxLayout="column" fxFlex="45%"  [ngStyle.lt-sm]="{'width.%' : 90}" >
+                <h3 class="margin-top">Parámetros de la aplicación:</h3>
+                <mat-form-field class="margin-top" >
+                    <mat-select placeholder="Idioma">
+                        <mat-option value="option">Option</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-select placeholder="Zona horaria">
+                     <mat-option value="option">Option</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                        <mat-select placeholder="Formato de fecha:">
+                         <mat-option value="option">Option</mat-option>
+                        </mat-select>
+                </mat-form-field>
+        </div>
+        <div fxLayout="column" fxFlex="45%" [ngStyle.lt-sm]="{'width.%' : 90}">
+                <h3 class="margin-top">Botones de acceso rápido:</h3>
+                <mat-form-field>
+                    <mat-select placeholder="Acceso rápido a:">
+                        <mat-option value="option">Option</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+        </div>
+    </div>
+    <div fxLayout="row" class="margin-row margin-bottom"  fxLayoutGap="10%" >
+        <div fxlayout="column" fxFlex="45%">
+            <h3 >Parámetros de la aplicación:</h3>
+            <mat-slide-toggle class="margin-top">Notiﬁcar por correo</mat-slide-toggle>
+            <p class="margin-top">Cuándo notiﬁcar</p>
+            <div fxLayout="row" class="margin-top" >
+                <mat-checkbox >Registro en un grupo</mat-checkbox>
+                <mat-checkbox>Asignación de nota</mat-checkbox>
+            </div>
+        </div>
+        <div fxlayout="column" fxFlex="45%">
+            <h3>Personaliza la aplicación</h3>
+            <p class="margin-top">Conﬁgura tu página con el logo y colores que representan a la empresar</p>
+            <p class="margin-top">Selecciona tu logo: </p>
+            <p class="margin-top">Selecciona 2 colores:</p>
+            <div fxLayout="row">
+                <i class="material-icons">color_lens</i>
+                <i class="material-icons"> color_lens</i>
+           </div>
+        </div>
+    </div>
+    <mat-divider  ></mat-divider>
+    <div fxLayout="row"  class="margin" fxLayoutGap="3%" fxLayout.lt-sm="column" fxLayoutAlign="end center">
+            <button mat-button color="primary" >Atras</button>
+            <button mat-raised-button color="primary" class="white-font-color" >Guardar Cambios</button>
+        </div>
+</form>

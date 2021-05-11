@@ -1,0 +1,204 @@
+<mat-card class="h-min-400p">
+  <mat-card-header >
+    <mat-card-title>
+      <h2 [textContent]="title" (click)="openModalMeeting()" ></h2>
+    </mat-card-title>
+    <span fxFlex></span>
+
+    <!--Filtrar-->
+    <button mat-icon-button matTooltip="Filtrar" aria-label="Filtrar" [matMenuTriggerFor]="filterMenu">
+      <mat-icon color="primary">find_in_page</mat-icon>
+    </button>
+    <mat-menu #filterMenu="matMenu" xPosition="before" class="menu-form-wrapper">
+      <div (click)="$event.stopPropagation()">
+        <form class="menu-form" [formGroup]="filterFormGroup">
+          <mat-label class="titulo-label">Filtrar</mat-label>
+
+          <mat-label *ngIf="currentNoteType==1">Estado Asignación:</mat-label>
+          <mat-form-field fxFill appearance="outline" *ngIf="currentNoteType==1">
+            <mat-select formControlName="assigmentStatus">
+              <mat-option *ngFor="let status of assigmentStatus" [value]="status.id">
+                {{status.status}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-label *ngIf="currentNoteType==2">Estado Acuerdo:</mat-label>
+          <mat-form-field fxFill appearance="outline" *ngIf="currentNoteType==2">
+            <mat-select formControlName="agreementStatus">
+              <mat-option *ngFor="let status of agreementStatus" [value]="status.id">
+                {{status.status}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-label>Grupos:</mat-label>
+          <mat-form-field appearance="outline">
+            <mat-select formControlName="group" >
+              <mat-option (click)=updateSelectId(group.id) *ngFor="let group of groups" [value]="group.id">
+                {{group.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-label *ngIf="selectNotesId">Responsable:</mat-label>
+          <mat-form-field appearance="outline">
+            <mat-select formControlName="member">
+              <mat-option *ngFor="let member of members" [value]="member.id">
+                {{member.firstName}} {{member.lastName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-label>Palabra o frase:</mat-label>
+          <mat-form-field appearance="outline">
+            <input matInput type="text" formControlName="word">
+          </mat-form-field>
+
+          <a fxFlexAlign="center" (click)="onClickRemoveFilter()">Ver todos</a>
+        </form>
+      </div>
+    </mat-menu>
+
+    <!--Ordenar-->
+    <button mat-icon-button matTooltip="Ordenar" aria-label="Ordenar" [matMenuTriggerFor]="orderingMenu">
+      <mat-icon color="primary">filter_list</mat-icon>
+    </button>
+    <mat-menu #orderingMenu="matMenu" xPosition="before" class="menu-form-wrapper">
+      <div (click)="$event.stopPropagation()">
+        <form class="menu-form" [formGroup]="sortingFormGroup">
+          <mat-label class="titulo-label">Ordenar</mat-label>
+
+          <mat-label>Por:</mat-label>
+          <mat-form-field fxFill appearance="outline">
+            <mat-select formControlName="by" (selectionChange)="onOptionSortChange()">
+              <mat-option *ngFor="let option of sortOptions" [value]="option.id">
+                {{option.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-label>Forma:</mat-label>
+          <mat-form-field appearance="outline">
+            <mat-select formControlName="shape" (selectionChange)="sort()">
+              <mat-option *ngFor="let shape of sortShape" [value]="shape.id">
+                {{shape.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <a fxFlexAlign="center" (click)="onClickRemoveSort()">Reiniciar</a>
+        </form>
+      </div>
+    </mat-menu>
+
+    <!--Crear-->
+    <button *ngIf="rolInGroup !== 'Participant'" mat-icon-button matTooltip="Crear" aria-label="Añadir" (click)="openCreateModal()">
+      <mat-icon color="primary">add_circle_outline</mat-icon>
+    </button>
+
+    <!--Notas-->
+    <button mat-icon-button matTooltip="Tipo notas" aria-label="Notas" [matMenuTriggerFor]="notaMenu">
+      <mat-icon color="primary">more_vert</mat-icon>
+    </button>
+    <mat-menu #notaMenu="matMenu">
+      <div *ngFor="let note of notes">
+        <button mat-menu-item (click)="onNoteTypeChange(note.id)">
+          <mat-icon color="primary">{{note.icon}}</mat-icon>
+          <span>{{note.name}}</span>
+        </button>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-menu>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content fxLayout="column">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element"  (click)="sendData(element)">
+          <div fxLayout="column" class="w-100">
+            <span class="title" matTooltip="{{element.title}}">{{element.title}}</span>
+            <span class="subtitle" matTooltip="{{element.content}}">{{element.content}}</span>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="group">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" fxHide.lt-md (click)=" sendData(element)">
+          <div fxLayout="row wrap" fxLayoutAlign="center center" class="w-100">
+            <ngx-avatar *ngIf="element.group.img" fxHide.lt-lg src="{{element.group.img}}" name="{{element.group.name}}"
+                        size="40" class="w-50px">
+            </ngx-avatar>
+            <ngx-avatar *ngIf="!element.group.img" fxHide.lt-lg src="../../../../../assets/images/group-defaul.png" name="{{element.group.name}}"
+             size="40" class="w-50px">
+            </ngx-avatar>
+            <br>
+            <span class="title w-50" matTooltip="{{element.group.name}}">{{element.group.name}}</span>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="user">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <div fxLayout="row wrap" fxLayoutAlign="center center" *ngIf="element.user != null" class="w-100">
+            <ngx-avatar fxHide.lt-md src="{{element.user.img}}"
+                        [name]="element.user.firstName + ' ' + element.user.lastName"
+                        size="40" class="w-50px">
+            </ngx-avatar>
+            <br>
+            <span class="title w-50">{{element.user.firstName}} {{element.user.lastName}}</span>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <div fxLayout="column" class="w-100">
+            <span *ngIf="!element.date" class="title w-80">Fecha entrega</span>
+            <span *ngIf="element.date" class="title w-80">Fecha creacion</span>
+            <span *ngIf="!element.date" class="subtitle w-80">{{element.finalDate | date:'dd/MM/yyyy'}}</span>
+            <span *ngIf="element.date" class="subtitle w-80">{{element.date | date:'dd/MM/yyyy'}}</span>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="options">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+<!--          && (element.status=== 4 && element.usrCreator === httpService.userId)-->
+          <div  *ngIf="(selectNotesId===2 && (element.usrId === httpService.userId || element.usrIdCreator === httpService.userId)) || (selectNotesId === 1 && (element.status!=3 && (element.usrId === httpService.userId && !sightview || element.usrCreator === httpService.userId)))" fxLayout="column" fxLayoutAlign="center center" class="w-100">
+            <button fxFlex="center" mat-icon-button [matMenuTriggerFor]="statusMenu" #menuTrigger="matMenuTrigger"
+                    [ngStyle]="{display: (!isLoadingStatusOptions || (isLoadingStatusOptions && element.id != activeRowId)) ? 'block' : 'none'}"
+                    aria-label="Cambio estatus" (click)="onCheckNextStatus(element.id, menuTrigger,element)">
+              <mat-icon (click)="getSelectAssig(element)" color="primary">more_horiz</mat-icon>
+            </button>
+            <mat-spinner [diameter]="20" *ngIf="isLoadingStatusOptions && element.id == activeRowId"></mat-spinner>
+            <mat-menu #statusMenu="matMenu" >
+              <div *ngFor="let option of statusMenuOptions">
+                <button mat-menu-item class="status-option-btn" (click)="nextStatus(element,option.description)" >
+                  <span >{{option.description}}</span>
+                </button>
+                <mat-divider></mat-divider>
+              </div>
+            </mat-menu>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getNotifications(row)"
+          [ngClass]="{'normal-background-color' : activeRowId != row.id,
+           'active-background-color' : activeRowId == row.id}"></tr>
+    </table>
+
+    <div fxLayout="column" fxLayoutAlign="center center" class="empty-container"
+         *ngIf="dataSource.data.length == 0">
+      <img src="assets/images/empty_box.jpg" alt="No hay asignación o acuerdo">
+      <span *ngIf="currentNoteType == 1">{{emptyAssignments}}</span>
+      <span *ngIf="currentNoteType == 2">{{emptyAgreements}}</span>
+    </div>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+   <mat-paginator (page)=" Resizepage($event)" [ngStyle]="{display: showPaginator ? 'block' : 'none'}" [pageSizeOptions]="[5, 10]"
+                   [pageSize]="pageSize"  showFirstLastButtons></mat-paginator>
+</mat-card>
+

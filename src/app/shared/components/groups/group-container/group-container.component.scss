@@ -1,0 +1,342 @@
+@import '../../../../core/styles/variables';
+
+.group-card {
+  padding-top: 0;
+}
+
+.group-title {
+  color: mat-color($primary);
+  font-weight: bold;
+  font-size: $font-size-14;
+}
+
+.slide {
+  outline: none !important;
+  width: 100%;
+  //padding-left: 50px;
+}
+
+.container-name {
+  color: $gray-font;
+  font-weight: bold;
+  font-size: $font-size-12;
+  max-width: 80px;
+  display: inline-block;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  //margin-right: -10em;
+  margin-left: 0em;
+  text-align: center;
+}
+.container-group-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0.125em 0em 0 1.25em;
+}
+.container-name-selec {
+  color: mat-color($primary);
+  font-weight: bold;
+  font-size: $font-size-12;
+  max-width: 80px;
+  display: inline-block;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  margin-right: 1em;
+  margin-left: 2em;
+  text-align: center;
+}
+::ng-deep.slick-next:before {
+  content: url(~src/assets/icons/keyboard_arrow_right.png);
+  color: $gray-font;
+  font-weight: bold;
+  font-size: $font-size-24;
+  margin-left: -18px;
+  position: relative;
+}
+
+::ng-deep.slick-prev:before {
+  content: url(~src/assets/icons/keyboard_arrow_left.png);
+  color: $gray-font;
+  font-weight: bold;
+  font-size: $font-size-24;
+  margin-right: 5px;
+  position: relative;
+}
+
+::ng-deep.slick-track {
+  margin: 0;
+}
+
+@media screen and (max-width: 599px) {
+  .container-name {
+    max-width: 100px;
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 769px) {
+.container-group-info{
+  margin: 0.125rem 0 0 0.75rem
+}
+}
+@media screen and (max-width: 425px) {
+  .container-group-info{
+    margin: 0.125rem 0.75rem 0 0.75rem
+  }
+}
+@media screen and (min-width: 1025px) {
+  .container-group-info{
+    margin: 0.125em 1em 0 1.25em;
+  }
+}
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  //min-height: 300px;
+  border-bottom: 1px dotted white; /* If you want dots under the hoverable text */
+}
+h3 {
+  background-color: mat-color($primary);
+  padding: 5px 5px;
+  margin-bottom: 10px;
+  margin-top: -5px;
+}
+.h4-participant{
+  color: mat-color($primary);
+  padding: 5px 5px;
+  margin-bottom: 10px;
+}
+.p-participant{
+  text-align: left;
+  margin-left: 50px;
+  color: $light-gray-font;
+  margin-bottom: 7px;
+}
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 400px;
+  min-height: 100px;
+  background-color:white;
+  color: black;
+  border: 1px solid gray;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  top: -50px;
+  left: 160%;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 9;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.p-item {
+  margin-top : 10px;
+  margin-bottom : 10px;
+  font-weight: bold;
+  color: mat-color($primary);
+}
+.p-description{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.r-item{
+  widows: 20px;
+  height: 14px;
+  padding-left: 14px;
+}
+
+.c-item{
+  float: left;
+  widows: 20px;
+  height: 14px;
+  padding-left: 14px;
+}
+.r-title {
+  color: #a09da0;
+  font-weight: bold;
+  font-size: $font-size-10;
+}
+.c-record{
+  color: #585858;
+  font-weight: 400;
+  font-size: 9px;
+  //max-width: 100px;
+  display: inline-block;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  margin-right: 0em;
+  margin-left: 0em;
+  text-align: left;
+  margin-bottom: 2px;
+}
+
+.c-slick-list {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  margin: 0px;
+  padding: 0;
+  padding-left: 105px;
+}
+
+.style-button-add {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background-color: WHITE;
+  display: inline-block;
+  border: 1px solid grey;
+  padding-left: 0px;
+  padding-top: 0;
+  mat-icon {
+    color:#151414;
+    padding-left: 0px;
+    padding-top:0px;
+  }
+}
+
+.circle {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: WHITE;
+  display: inline-block;
+  border: 1px solid grey;
+}
+
+
+.color-red{
+  background-color:red;
+ }
+ .color-yellow{
+  background-color:yellow;
+ }
+.color-green{
+  background-color:green;
+}
+.color-purple{
+  background-color:purple;
+ }
+ .color-gray{
+  background-color:gray;
+ }
+
+ .color-orange{
+  background-color:orange;
+ }
+
+ .button-none{
+  border:none;
+  }
+
+.opt-rol{
+  margin: 2%;
+  cursor: pointer;
+}
+.selected{
+  font-size: 13px;
+  font-weight: bold;
+  //color: $primary;
+}
+
+.m-right-5 {
+  margin-right: 5px;
+}
+
+.new-group-button:hover {
+  cursor: pointer;
+}
+
+.binocular-icon{
+  margin: auto;
+  display: block;
+  &:hover  {
+    cursor: pointer;
+  }
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+  #box-circle{
+margin-top: 3px;
+  }
+
+#box-text{
+  margin-top: -19px;
+}
+
+#button-add{
+  margin-top: auto;
+}
+
+#box-circle-add{
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: #ffffff08;
+  display: inline-block;
+  border: 1px solid grey;
+  margin-left: -5px;
+  margin-top: -26px;
+  position: absolute;
+
+}
+
+
+
+#box-circle-icon{
+margin-top: -24px;
+margin-left: 28px;
+}
+
+.mat-icon {
+  color:#151414;
+  padding-left: 0px;
+}
+
+.tama-mas{
+  margin-top: -16px;
+margin-left: 2px;
+
+}
+
+
+
+#box-circle-group{
+  margin-top: -15px;
+  margin-left: 25px;
+    }
+
+  #box-text-group{
+    color: #585858;
+    font-weight: bold;
+    font-size: 10px;
+    max-width: 100px;
+    text-align: -webkit-center;
+    margin-top: -16px;
+    margin-left: 35px
+  }
+#position-mat-icon{
+  margin-top: 0px;
+  margin-left: -6px;
+}
+.spinner-margin{
+  margin: 3% auto;
+}

@@ -1,0 +1,94 @@
+<mat-card class="h-min-400p">
+  <mat-card-header>
+    <mat-card-title>
+      <h2>PROGRESO</h2>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div *ngIf="stats" fxLayout="column" fxFlex="100%" fxLayoutAlign="space-between center" style="margin-top: 1rem">
+      <div fxLayout="row" fxFlex fxLayoutAlign="space-around center" style="margin-bottom: 1rem;width: 100%">
+        <mat-card fxFlex="45" fxLayout="column">
+          <div fxFlex fxLayout="row">
+            <fa-icon fxFlex [icon]="faListAlt" size="2x"></fa-icon>
+            <p fxFlex class="font">Total Asignaciones</p>
+          </div>
+          <div fxFlex fxLayoutAlign="end end">
+            <span class="font number">{{stats.totalAssigns}}</span>
+          </div>
+        </mat-card>
+        <mat-card fxFlex="45" fxLayout="column">
+          <div fxFlex fxLayout="row">
+            <fa-icon fxFlex [icon]="faListAlt" size="2x"></fa-icon>
+            <p fxFlex class="font">Asignaciones precerradas</p>
+          </div>
+          <div fxFlex fxLayoutAlign="end end">
+            <span class="font number">{{stats.precloseAssigns}}</span>
+          </div>
+          </mat-card>
+      </div>
+      <div fxLayout="row" fxFlex="100%" fxLayoutAlign="space-around center" style="margin-bottom: 1rem;width: 100%">
+        <mat-card fxFlex="45" fxLayout="column">
+          <div fxFlex fxLayout="row">
+            <fa-icon fxFlex [icon]="faListAlt" size="2x"></fa-icon>
+            <p fxFlex class="font">Asignaciones cerradas</p>
+          </div>
+          <div fxFlex fxLayoutAlign="end end">
+            <span class="font number">{{stats.closeAssigns}}</span>
+          </div>
+        </mat-card>
+        <mat-card fxFlex="45" fxLayout="column">
+          <div fxFlex fxLayout="row">
+            <fa-icon fxFlex [icon]="faListAlt" size="2x"></fa-icon>
+            <p fxFlex class="font">Asignaciones activas</p>
+          </div>
+          <div fxFlex fxLayoutAlign="end end">
+            <span class="font number">{{stats.activeAssigns}}</span>
+          </div>
+        </mat-card>
+      </div>
+      <div fxLayout="row" fxFlex="100%" fxLayoutAlign="space-around center" style="margin-bottom: 1rem;width: 100%">
+        <mat-card fxFlex="45" fxLayout="column">
+          <div fxFlex fxLayout="row">
+            <fa-icon fxFlex [icon]="faListAlt" size="2x"></fa-icon>
+            <p fxFlex class="font">Asignaciones pendientes</p>
+          </div>
+          <div fxFlex fxLayoutAlign="end end">
+            <span class="font number">{{stats.pendingAssigns}}</span>
+          </div>
+        </mat-card>
+        <mat-card fxFlex="45" fxLayout="column">
+          <div fxFlex fxLayout="row">
+<!--            <fa-icon fxFlex [icon]="faListAlt" size="2x"></fa-icon>-->
+            <mat-icon class="icon">supervised_user_circle</mat-icon>
+            <p fxFlex class="font">Reuniones</p>
+          </div>
+          <div fxFlex fxLayoutAlign="end end">
+            <span class="font number">{{stats.totalMeetings}}</span>
+          </div>
+        </mat-card>
+      </div>
+      <div fxLayout="row" fxFlex="100%" fxLayoutAlign="space-around center" style="margin-bottom: 1rem;width: 100%">
+        <mat-card fxFlex="45" fxLayout="column">
+          <div fxFlex fxLayout="row">
+            <fa-icon fxFlex [icon]="faTasks" size="2x"></fa-icon>
+            <p fxFlex class="font">Acuerdos</p>
+          </div>
+          <div fxFlex fxLayoutAlign="end end">
+            <span class="font number">{{stats.totalAgreements}}</span>
+          </div>
+        </mat-card>
+        <mat-card fxFlex="45" fxLayout="column">
+          <div fxFlex fxLayout="row">
+            <fa-icon fxFlex [icon]="faListAlt" size="2x"></fa-icon>
+            <p fxFlex class="font">Informaciones</p>
+          </div>
+          <div fxFlex fxLayoutAlign="end end">
+            <span class="font number">{{stats.totalInfo}}</span>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+
+  </mat-card-content>
+</mat-card>

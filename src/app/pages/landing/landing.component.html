@@ -1,0 +1,52 @@
+<div fxLayout="row" fxLayout.lt-sm="column" class="h-100 w-100 overflow-auto">
+
+  <div fxLayout="column" fxFlex="450px" fxFlex.lt-sm="45%" class="img-inicio-box">
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <div class="img-logo-abx-container" fxLayout="column" fxLayoutGap="2%">
+        <img class="img-logo-abx" src="assets/images/logo-abx.png" alt="ABX">
+        <img class="img-logo-by-intelix" src="assets/images/log-by-intelix.png" alt="By Intelix">
+      </div>
+    </div>
+
+    <div fxLayout="column" fxFlex fxLayoutGap="10%">
+      <div class="banner-title">
+        {{title}}
+      </div>
+
+      <div class="banner-description">
+        {{description}}
+      </div>
+
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="banner-footer">
+      <div fxLayout="column">
+        <div>&#169; {{version}}</div>
+
+        <div>
+          Copyright Intelix Synergy
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end center">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <button mat-button>
+            <div>Privacidad</div>
+          </button>
+          <button mat-button>
+            <div>Legal</div>
+          </button>
+          <button mat-button>
+            <div>Contacto</div>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <main class="content h-100">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

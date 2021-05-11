@@ -1,0 +1,5 @@
+<div fxLayout="row">
+  <ngx-avatar *ngFor="let participant of participants" class="margin" size="30" initialsSize="2" cornerRadius="4" name="{{participant.firstName}} {{participant.lastName}}" src="{{participant.img}}"></ngx-avatar>
+  <ngx-avatar *ngIf=" this.maxPart> 6 " class="margin" size="30" initialsSize="2" cornerRadius="4" name="+ {{this.additional}}">
+  </ngx-avatar>
+</div>

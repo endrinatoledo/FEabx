@@ -1,0 +1,126 @@
+<div fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <span class="title">{{title}}</span>
+      <span fxFlex></span>
+      <button mat-icon-button color="primary" mat-dialog-close>
+        <mat-icon>highlight_off</mat-icon>
+      </button>
+    </div>
+    <mat-divider></mat-divider>
+    <form class="form-container" [formGroup]="formGroup">
+      <div
+      fxLayout="row wrap"
+      fxLayoutAlign="center center"
+      fxLayoutGap="2%">
+        <div
+          fxFlex="100% "
+          fxFlex.lt-md="100%"
+          fxFlex.lt-sm="100%"
+        >
+        <div fxLayout="row" fxLayoutGap="2%" fxLayout.lt-sm="row wrap"  fxLayoutAlign="center center">
+            <mat-form-field fxFlex="56%" fxFlex.lt-sm="100%" appearance="outline">
+                <mat-label>
+                  Titulo
+                </mat-label>
+                <input matInput type="text" formControlName="title">
+              </mat-form-field>
+            <mat-form-field fxFlex="20%" disable  fxFlex.lt-sm="100%" appearance="outline">
+              <mat-label id="date-label">
+                Fecha
+              </mat-label>
+              <input fxFill matInput [matDatepicker]="date" formControlName="date">
+              <mat-datepicker-toggle disabled matSuffix [for]="date"></mat-datepicker-toggle>
+              <mat-datepicker #date></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline"  fxFlex="20%"  fxFlex.lt-sm="100%"     >
+                <mat-label>
+                  <mat-icon>group</mat-icon>
+                  Grupo
+                </mat-label>
+                <input matInput type="text" formControlName="group" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith">
+                    <mat-option *ngFor="let option of groupFilteredOptions" [value]="option.name" (onSelectionChange)="getUserByGroup(option.id)">
+                        <div fxLayout="row" fxLayout.lt-sm="row wrap"  fxLayoutAlign=" center space-between">
+                         <ngx-avatar *ngIf="!option.img" [style.margin-right]="'10px'" src="../../../../../assets/images/group-defaul.png"
+                        size="20" class="avatar-container"></ngx-avatar>
+                        <ngx-avatar *ngIf="option.img" [style.margin-right]="'10px'"  [src]="option.img"
+                        size="20" class="avatar-container"></ngx-avatar>
+                        {{option.name}}
+                        </div>
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        <mat-divider></mat-divider>
+        <span class="sub-title">Invitados</span>
+        <div fxLayout="row wrap"  style="margin-top:1em; margin-bottom: 1em;"  fxLayoutGap="1%" fxLayout.lt-sm="row wrap"  >
+            <div fxFlex="20%" fxLayoutGap="1%" fxLayout.lt-sm="column"  fxFlex.lt-sm="330px" *ngFor="let user of userByGroup" >
+              <!-- <mat-checkbox formControlName="userInv2" (ngModelChange)="onNgModelChange(user,$event)"
+                              *ngFor="let user of userByGroup" color="primary"
+                              fxFlex="24%">{{user.firstName}} {{user.lastName}}  </mat-checkbox> -->
+              
+                 <mat-checkbox formControlName="userInv2" (ngModelChange)="onNgModelChange(user,$event)"color="primary"
+                    *ngIf="user.firstName != ' ' || user.lastName != ' ' 
+                    "fxFlex="24%">{{user.firstName}} {{user.lastName}}  </mat-checkbox>
+                <mat-checkbox formControlName="userInv2" (ngModelChange)="onNgModelChange(user,$event)"color="primary"
+                    *ngIf="user.firstName == ' ' || user.lastName == ' ' 
+                    "fxFlex="24%">{{user.email}}  </mat-checkbox> 
+              
+                
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout.lt-sm="row wrap"  fxLayoutAlign="center center">
+            <mat-form-field appearance="outline"  fxFlex="100%"  fxFlex.lt-sm="100%"     >
+                <mat-label>
+                  <mat-icon>group</mat-icon>
+                  Agregar Invitado
+                </mat-label>
+                <input matInput type="text" formControlName="userInv"  (keyup.enter)="getUserByOrgName('userInv', 'pattern')">
+                <mat-error *ngIf="hasError('userInv', 'pattern')">
+                  <mat-icon>cancel</mat-icon>
+                  Debe introducir un correo válido
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div fxLayout="column" *ngFor="let item of listInvitations"  style="max-height: 120px;"  style="margin-bottom: 1em" >
+            
+          <div *ngIf="item.status == 1 && item.firstName !=' ' && item.lastName !=' ' ">
+            <app-chips-participants  fxFlex="0 1 calc(100%) " fxFlex.lt-md="0 1 calc(100%)" fxFlex.lt-sm="100%" class="w-100"
+            style="padding-top: 15px;" (part)="deleteInvList(item)"  [user]="item">
+            </app-chips-participants>
+          </div>
+          <div *ngIf="item.firstName ==' ' || item.lastName ==' ' ">
+            <app-chips-participants  fxFlex="0 1 calc(100%) " fxFlex.lt-md="0 1 calc(100%)" fxFlex.lt-sm="100%" class="w-100"
+            style="padding-top: 15px;" (part)="deleteInvList(item)"  [invitation]="item.email">
+            </app-chips-participants>
+          </div>
+          <div *ngIf="!item.status ">
+            <app-chips-participants (part)="deleteInvList($event)" fxFlex="0 1 calc(100%) " fxFlex.lt-md="0 1 calc(100%)" fxFlex.lt-sm="100%" class="w-100"
+            style="padding-top: 15px;" (deleteInvitationPart)="deleteInvList(item)"  [invitation]="item"></app-chips-participants>
+          </div>
+        </div>
+
+        <div fxLayout="row" fxLayout.lt-sm="row wrap"  fxLayoutAlign="center center">
+            <mat-form-field fxFlex="100%" appearance="outline" fxFlex.lt-sm="100%"  >
+                <mat-label>
+                    <mat-icon>room</mat-icon>
+                    Sitio de reunión
+                </mat-label>
+                <mat-select formControlName="Location">
+                  <mat-option *ngFor="let origin of origins" [value]="origin.id">
+                    <span class="break-line">{{origin.name}}</span>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+        </div>
+    </div>
+      <mat-divider></mat-divider>
+      <mat-dialog-actions fxLayoutAlign="center center">
+        <button type="button" mat-button color="primary" mat-dialog-close>Salir</button>
+        <button type="button" mat-raised-button color="primary" class="white-font-color" (click)="onSave()">Crear</button>
+      </mat-dialog-actions>
+    </form>
+  </div>
+

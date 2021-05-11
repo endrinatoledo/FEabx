@@ -1,0 +1,21 @@
+.color {
+    color: grey
+}
+
+.borde-color {
+    border: rgba($color: #9b9b9b, $alpha: 0.5) 1px solid;
+    max-width: 250px;
+    margin-bottom: 1em;
+    border-radius: 23px;
+    position: relative;
+}
+.cursor {
+    cursor: pointer;
+}
+
+#h5 {
+    width:95%;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+  }

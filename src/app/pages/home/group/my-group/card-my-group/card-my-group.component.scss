@@ -1,0 +1,53 @@
+@import '../../../../../core/styles/variables';
+.color-icons{
+    color:mat-color($primary);
+    font-size: $font-size-28;
+}
+.font{
+    color:$light-gray-font;
+    font-weight:bold;
+   
+}
+.card{
+
+    background: WHITE;
+    margin-left: 0.5em;
+
+}
+span{
+    margin-top: 7px;
+    margin-left: 7px;
+    font-size: $font-size-14;
+    color:mat-color($primary);
+    font-weight: bold;
+    cursor:pointer;
+  }
+.margin-top{
+
+    margin-top:7px;
+}
+.groupName{
+
+    color:$light-gray-font;
+    font-weight:bold;
+    font-size: $font-size-20;
+
+}
+.margin-lef{
+
+    margin-left : 4em;
+}
+.margin-lef-2{
+
+    margin-left : 2em;
+}
+.margin-bottom{
+    
+    margin-bottom: 1em;
+    
+}
+.color-red {
+    
+   color: red;
+    
+}

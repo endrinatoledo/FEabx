@@ -1,0 +1,77 @@
+<div
+  class="w-100 group-container"
+  (keyup.enter)="salida2()"
+  fxLayout="row"
+  fxLayoutAlign="center center"
+>
+  <mat-card fxFlex="93%" fxFlex.lt-sm="90%" class="group-card">
+    <mat-card-title><span class="group-title">Mis Grupos     </span>
+      <a aria-label="Lider" class="r-title opt-rol" [ngClass]="{selected: rolSelected==='Leader'}" (click)="groupsAsRol('Leader')" ><fa-icon [icon]="faAward" [styles]="{'stroke': 'blue', 'color': 'blue'}"></fa-icon>  Lider </a>
+      <a aria-label="Lider Suplente" class="r-title opt-rol" [ngClass]="{selected: rolSelected==='Suplente'}" (click)="groupsAsRol('Suplente')"><fa-icon [icon]="faCertificate" [styles]="{'stroke': 'orange', 'color': 'orange'}"></fa-icon>  Lider Suplente</a>
+      <a aria-label="Participante" class="r-title opt-rol" [ngClass]="{selected: rolSelected==='Participant'}" (click)="groupsAsRol('Participant')"><fa-icon [icon]="faUser" [styles]="{'stroke': 'grey', 'color': 'grey'}"></fa-icon>  Participante </a>
+    </mat-card-title>
+    <mat-card-content>
+      <div
+        class="container"
+        fxLayout="row"
+        fxLayoutGap="2%"
+        fxLayoutGap.lt-md="1%"
+        fxLayoutGap.lt-sm="20px"
+      >
+        <div
+          fxFlex="16%"
+          fxFlex.lt-sm="50%"
+
+          fxFlexAlign="center"
+          fxLayout="column" fxLayoutAlign="space-between start"
+        >
+
+          <span class="c-record"><div class="circle color-red m-right-5"></div>Asingnaciones Criticas</span>
+        <span class="c-record"><div class="circle color-yellow m-right-5"></div>Asignaciones Pre Cerradas</span>
+        <span class="c-record"><div class="circle color-green m-right-5"></div>Acuerdos</span>
+        <span class="c-record"><div class="circle color-purple m-right-5"></div>Puntos Sugeridos</span>
+        <span class="c-record"><div class="circle color-gray m-right-5"></div>Reuniones Abiertas</span>
+        <div class="new-group-button"  fxLayout="row" fxLayoutAlign="start center">
+          <a
+          aria-label="add"
+          matTooltip="Añadir"
+          color="write"
+          class="style-button-add"
+          (click)="routeTo()"
+        >
+          <mat-icon>add</mat-icon>
+        </a><span (click)="routeTo()" style="display: block; margin-left: 5px" >Nuevo</span></div>
+
+
+        </div>
+        <div fxFlex="80%" fxFlex.lt-sm="100px">
+          <mat-spinner class="spinner-margin" [diameter]="50" *ngIf="isLoadingGroups"></mat-spinner>
+          <ngx-slick-carousel [config]="slideConfig" [ngStyle]="{display: (!isLoadingGroups) ? 'block' : 'none'}">
+
+            <div
+              ngxSlickItem
+              *ngFor="let group of groups"
+              class="slide"
+            >
+              <app-item-group
+                [group]="group"
+                [selectid]="this.selectGroupid"
+                [logoSrc]="group.img"
+                (click)="getGroupAssi(group.id)"
+              >
+              </app-item-group>
+              <div class="container-group-info">
+                <span class="container-name truncate" matTooltip="{{group.name}}">
+                <fa-icon *ngIf="group.usersrolatr[0].rol_id==='1,2'" [icon]="faAward" [styles]="{'stroke': 'blue', 'color': 'blue'}"></fa-icon>
+                <fa-icon *ngIf="group.usersrolatr[0].rol_id==='2,3'" [icon]="faCertificate" [styles]="{'stroke': 'orange', 'color': 'orange'}"></fa-icon>
+                <fa-icon *ngIf="group.usersrolatr[0].rol_id==='2'" [icon]="faUser" [styles]="{'stroke': 'grey', 'color': 'grey'}"></fa-icon>
+                                {{ group.name }}</span>
+                <mat-icon *ngIf="rolSelected ==='Participant'" [ngClass]="{sightview: group.id===selectGroupid && enableSightview}" (click)="generalView(group.id)" class="binocular-icon" svgIcon="binocular"></mat-icon>
+              </div>
+            </div>
+          </ngx-slick-carousel>
+        </div>
+      </div>
+    </mat-card-content>
+    </mat-card>
+</div>

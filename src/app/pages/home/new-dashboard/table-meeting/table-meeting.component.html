@@ -1,0 +1,108 @@
+<mat-card class="h-min-400p">
+    <mat-card-header >
+      <mat-card-title>
+        <h2 [textContent]="title" (click)="openModalMeeting()" ></h2>
+      </mat-card-title>
+      <span fxFlex></span>
+      <!--Ordenar-->
+      <button mat-icon-button matTooltip="Ordenar" aria-label="Ordenar" [matMenuTriggerFor]="orderingMenu">
+        <mat-icon color="primary">filter_list</mat-icon>
+      </button>
+      <mat-menu #orderingMenu="matMenu" xPosition="before" class="menu-form-wrapper">
+        <div (click)="$event.stopPropagation()">
+          <form class="menu-form" [formGroup]="sortingFormGroup">
+            <mat-label class="titulo-label">Ordenar</mat-label>
+
+            <mat-label>Por:</mat-label>
+            <mat-form-field fxFill appearance="outline">
+              <mat-select formControlName="by" (selectionChange)="onOptionSortChange()">
+                <mat-option *ngFor="let option of sortOptions" [value]="option.id">
+                  {{option.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-label>Forma:</mat-label>
+            <mat-form-field appearance="outline">
+              <mat-select formControlName="shape" (selectionChange)="sort()">
+                <mat-option *ngFor="let shape of sortShape" [value]="shape.id">
+                  {{shape.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <a fxFlexAlign="center" (click)="onClickRemoveSort()">Reiniciar</a>
+          </form>
+        </div>
+      </mat-menu>
+
+      <!--Crear-->
+      <button mat-icon-button matTooltip="Crear" aria-label="Añadir" (click)="openCreateModal()">
+        <mat-icon color="primary">add_circle_outline</mat-icon>
+      </button>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="time">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <div fxLayout="row" class="content">
+              <div fxLayout="column" fxLayoutAlign="center center" class="content">
+                <span class="date">{{element.date | date: 'dd/MM/yyyy'}}</span>
+              </div>
+            </div>
+            <!--<div fxLayout="row" class="content">
+              <div fxLayout="column" *ngIf="getMinutes(element.date) < MinutesInAnHour" fxLayoutAlign="center center" class="content">
+                <span class="date">{{getMinutes(element.date) }}</span>
+                <span class="date">Minutos</span>
+              </div>
+              <div fxLayout="column" *ngIf="(getMinutes(element.date) > MinutesInAnDay && getMinutes(element.date) <= MinutesInAn3Day) || (getMinutes(element.date) > 60 && getMinutes(element.date) <= MinutesInAn3Day)" fxLayoutAlign="center center" class="content">
+                <span class="date">{{getHours(element.date)}}</span>
+                <span class="date">Horas</span>
+              </div>
+              <div fxLayout="column" *ngIf="getMinutes(element.date) > MinutesInAn3Day" fxLayoutAlign="center center" class="content">
+                <span class="date">{{element.date | date: 'dd/MM/yyyy'}}</span>
+              </div>
+            </div>-->
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <p class="content">
+              <span >{{element.title}} </span>
+            </p>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="group">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element" fxHide.lt-md >
+              <div fxLayout="row wrap" fxLayoutAlign="center center" class="w-100">
+                <ngx-avatar *ngIf="element.groups.img" fxHide.lt-lg src="{{element.groups.img}}" name="{{element.groups.name}}"
+                            size="40" class="w-50px">
+                </ngx-avatar>
+                <ngx-avatar *ngIf="!element.groups.img" fxHide.lt-lg src="../../../../../assets/images/group-defaul.png" name="{{element.groups.name}}"
+                 size="40" class="w-50px">
+                </ngx-avatar>
+                <br>
+                <span class="title w-50" matTooltip="{{element.groups.name}}">{{element.groups.name}}</span>
+              </div>
+            </td>
+          </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getNotifications(row)"
+        [ngClass]="{'normal-background-color' : activeRowId != row.id,
+         'active-background-color' : activeRowId == row.id}"></tr>
+      </table>
+      <div fxLayout="column" fxLayoutAlign="center center" class="empty-container" *ngIf="dataSource.data.length == 0">
+        <img src="assets/images/empty_box.jpg" alt="No hay notificaciones">
+        <span>{{emptyNotification}}</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="card-paginator"  [ngStyle]="{display: showPaginator ? 'block' : 'none'}" >
+    <mat-paginator style="margin-top: -20px;"
+    [pageSize]="pageSize"
+    showFirstLastButtons></mat-paginator>
+  </mat-card>
+

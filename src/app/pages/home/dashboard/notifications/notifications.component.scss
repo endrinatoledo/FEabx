@@ -1,0 +1,84 @@
+@import '../../../../core/styles/variables';
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+td {
+  overflow: hidden;
+
+  &.mat-cell, &.mat-footer-cell, &mat-header-cell {
+    border-bottom-style: dashed;
+  }
+
+  &.mat-cell:nth-of-type(1) {
+    width: 30%;
+  }
+
+  &.mat-cell:nth-of-type(2) {
+    width: 70%;
+  }
+}
+
+.mat-header-row {
+  display: none;
+}
+
+mat-card-title {
+  h2 {
+    text-align: center;
+    line-height: 3;
+    font-weight: bold;
+    font-size: $font-size-16;
+    color: mat-color($primary);
+  }
+}
+
+mat-card-header {
+  height: 50px;
+
+  ::ng-deep.mat-card-header-text {
+    margin: 0 !important;
+    width: 100%;
+  }
+}
+
+.mat-card-content {
+  max-height: 400px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+
+  &:hover, &:focus {
+    overflow-y: auto;
+  }
+}
+
+.empty-container {
+  img {
+    width: 50%;
+    height: 50%;
+  }
+
+  span {
+    color: $light-gray-font;
+  }
+}
+
+
+.date {
+  font-size: $font-size-14;
+  color: $light-gray-font;
+}
+
+.content {
+  font-size: $font-size-12;
+  color: $light-gray-font;
+
+  .content-note {
+    color: mat-color($primary);
+    font-weight: bold;
+  }
+}
+
+

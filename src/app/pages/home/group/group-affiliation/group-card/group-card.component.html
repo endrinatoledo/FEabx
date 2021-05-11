@@ -1,0 +1,52 @@
+<mat-card mxFlex class="card-add">
+  <div fxLayout="column" fxLayoutGap="18px">
+    <div>
+      <mat-card-header>
+        <ngx-avatar mat-card-avatar src="{{group.img !== null ? group.img : '../../../../../assets/images/group-defaul.png'}}"></ngx-avatar>
+        <mat-card-subtitle fxLayoutAlign="center center" class="font">
+          <p class="text-card">
+            {{(group.name.length > 30) ? (group.name | slice:0:30) + '...' : (group.name)}}
+          </p>
+        </mat-card-subtitle>
+      </mat-card-header>
+    </div>
+    <div class="contenedor-card-text">
+      <mat-card-content>
+        <p class="text-card">
+          <!--            {{group.description}}-->
+          {{(group.description.length > 40) ? (group.description | slice:0:60) + '...' : (group.description)}}
+        </p>
+
+      </mat-card-content>
+    </div>
+    <div style="min-height: 30px">
+      <div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <div fxLayout="row">
+            <mat-card-content class="font">Participantes:</mat-card-content>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="end center">
+            <mat-card-content>{{group.participantes}}</mat-card-content>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <div fxLayout="row">
+            <mat-card-content class="font">Lider:</mat-card-content>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="end center">
+            <mat-card-content>{{group.lider["usersrolatr.user.firstName"] + ' ' + group.lider["usersrolatr.user.lastName"] }}</mat-card-content>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contenedor-card">
+      <mat-card-actions fxLayoutAlign="center center">
+        <button mat-raised-button [color]="paletteColour" [disabled]="btnStatus"
+                (click)="reqAfiliation(group)" class="white-font-color m-top-1 margen-bottom">{{msAfiliacion}}
+        </button>
+      </mat-card-actions>
+    </div>
+  </div>
+</mat-card>

@@ -1,0 +1,80 @@
+@import '../../core/styles/variables';
+
+.logo-intelix {
+  margin-top: 5%;
+  width: 100px;
+  height: 50px;
+}
+
+.logo-X {
+  margin-top: 5%;
+  width: 50px;
+  height: 50px;
+}
+
+.sidenav {
+  background-color: mat-color($primary);
+  width: 80px;
+  overflow: hidden !important;
+
+  ::ng-deep.mat-drawer-inner-container {
+    overflow: hidden !important;
+  }
+}
+
+.main-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.is-mobile {
+  position: fixed;
+  z-index: 2;
+}
+
+.sidenav-container {
+  flex: 1;
+}
+
+.is-mobile .sidenav-container {
+  flex: 1 0 auto;
+}
+
+.page-wrap {
+  height: 100vh;
+}
+
+.content {
+  flex: 1;
+  overflow: auto;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+
+  > *:not(router-outlet) {
+    flex: 1;
+    display: block;
+  }
+}
+
+footer {
+  height: 30px !important;
+  background-color: mat-color($accent);
+
+  h4 {
+    text-align: center;
+    color: WHITE;
+  }
+}
+
+@media screen and (max-width: 599px) {
+
+}

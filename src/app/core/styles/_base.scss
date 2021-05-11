@@ -1,0 +1,114 @@
+.h-100 {
+  height: 100% !important;
+}
+
+.w-80 {
+  width: 80% !important;
+}
+
+.w-20 {
+  width: 20% !important;
+}
+
+.w-30 {
+  width: 30% !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.w-90 {
+  width: 90% !important;
+}
+
+.h-50 {
+  height: 50% !important;
+}
+
+.w-50 {
+  width: 50% !important;
+}
+
+.w-100vw {
+  width: 100vw !important;
+}
+
+.w-50px {
+  width: 50px !important;
+}
+
+.h-100p {
+  height: 100px !important;
+}
+
+.h-400p {
+  min-height: 400px !important;
+}
+
+.h-450p {
+  height: 450px !important;
+}
+
+.h-350p {
+  height: 350px !important;
+}
+
+.h-min-400p {
+  min-height: 400px !important;
+}
+
+.p-0 {
+  padding: 0 !important;
+}
+
+.m-0 {
+  margin: 0 !important;
+}
+
+.m-top-1 {
+  margin-top: 1% !important;
+}
+
+.m-top-3{
+  margin-top: 3% !important;
+}
+
+.m-left-10p {
+  margin-left: 10px !important;
+}
+
+.m-right-10p {
+  margin-right: 10px !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.overflow-auto {
+  overflow: auto !important;
+}
+
+.white-font-color {
+  color: WHITE !important;
+}
+
+.break-line {
+  display: inline-block;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+
+@media screen and (max-width: 599px) {
+  .mq-w-100 {
+    width: 100% !important;
+  }
+
+  .mq-w-90 {
+    width: 90% !important;
+  }
+
+}

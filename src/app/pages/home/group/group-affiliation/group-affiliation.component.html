@@ -1,0 +1,30 @@
+<div fxLayout="row" class="color">
+  <a href="">Aﬁliación a Grupo</a>
+</div>
+<div class="w-100 dashboard-container margin-card" fxLayoutAlign="center center">
+  <div fxFlex="90" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="15px grid" fxLayoutAlign="center center">
+    <!--    <ng-container>-->
+    <div fxFlex="0 1 calc(25% - 15px)"
+         fxFlex.lt-md="0 1 calc(50% - 15px)"
+         fxFlex.lt-sm="100%"
+         class="w-100">
+      <app-card-add-group></app-card-add-group>
+    </div>
+    <div *ngFor="let group of groups">
+      <app-group-card [group]="group">
+      </app-group-card>
+    </div>
+<!--    <app-card-add-group fxFlex="0 1 calc(25% - 15px)"-->
+<!--                        fxFlex.lt-md="0 1 calc(50% - 15px)"-->
+<!--                        fxFlex.lt-sm="100%"-->
+<!--                        class="w-100"-->
+<!--    ></app-card-add-group>-->
+<!--    <div fxFlex="0 1 calc(25% - 15px)"-->
+<!--         fxFlex.lt-md="0 1 calc(50% - 15px)"-->
+<!--         fxFlex.lt-sm="100%"-->
+<!--         class="w-100" *ngFor="let group of groups">-->
+<!--      <app-group-card [group]="group">-->
+<!--      </app-group-card>-->
+<!--    </div>-->
+  </div>
+</div>

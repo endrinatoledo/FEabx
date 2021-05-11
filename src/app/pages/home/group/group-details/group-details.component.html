@@ -1,0 +1,33 @@
+<div fxLayout="row" class="margin-botto"><a href="#">Grupos | Mis Grupos |  Detalles de grupo {{groupDetails.name}}</a></div>
+<div fxLayout="row" fxLayoutGap="3%"  fxLayoutAlign="center center" class="margin-top">
+    <div  fxLayout="row wrap"   fxFlex="85%"   fxLayoutGap="3%" fxLayoutGap.lt-sm="0%" >
+        <mat-card fxFlex="25%"   fxFlex.lt-sm="99%" >
+             <div *ngIf="rol==='1,2'" fxLayout="row" fxLayoutAlign="end center" class="cursor" >
+                <i class="material-icons color-red" >delete </i>
+                <i class="material-icons color-blue" (click)="ToUpdateGroups(groupDetails)"  >create</i>
+             </div>
+            <div *ngIf="groupDetails.img; else elseBlock"><div fxLayout="row" fxLayoutAlign="center center" class="m-buttom">
+                <ngx-avatar size="100" src="{{groupDetails.img}}"></ngx-avatar>
+            </div></div>
+            <ng-template #elseBlock><div fxLayout="row" fxLayoutAlign="center center" class="m-buttom">
+                <ngx-avatar size="100" src="../../../../../../assets/images/group-defaul.png"></ngx-avatar>
+            </div></ng-template>
+            <mat-card-title fxLayoutAlign="center center" class="text-center break-word" >{{groupDetails.name}}</mat-card-title>
+                <mat-card-content>
+                  <p class="break-word">{{groupDetails.description}}</p>
+                </mat-card-content>
+            <div fxLayout="column" fxLayoutAlign="center"  fxLayoutGap="6%" >
+                    <button class="center-align" mat-raised-button color="primary"  class="button-submit"  (click)="ToGeneral()">
+                      <span >Vista General </span>
+                    </button >
+                    <button class="center-align" mat-raised-button color="primary"  class="button-submit" (click)="ToParticipants()">
+                        <span >Participantes</span>
+                    </button >
+                    <button class="center-align " mat-raised-button color="primary"   class="button-submit margin-buttom" (click)="ToNotes()" >
+                        <span >Notas</span>
+                      </button >
+                  </div>
+        </mat-card>
+        <div  fxFlex="70%" fxFlex.lt-sm="99%" ><router-outlet></router-outlet></div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+@import '../../../../core/styles/variables';
+a{ color:$light-gray-font;margin-left:1em;}
+
+.margin-botto{ margin-bottom: 1em;}
+
+.margin-top{
+    margin-top: 2em;
+}
+.color-red
+{
+ color: red;
+}
+.color-blue
+{
+ color:mat-color($primary);
+}
+.cursor{
+ cursor: pointer;
+ }
+.margin-buttom{
+
+    margin-bottom: 2em;
+}
+.m-buttom{
+
+  margin-bottom: 10px;
+}
+mat-card-content{
+    font-size: $font-size-20;
+    color: $light-gray-font;
+    margin: 1em ;
+
+}
+.min-h {
+  min-height: 800px;
+
+}
+
+.mensaje {
+  font-size: $font-size-18;
+  color: $light-gray-font;
+  margin-bottom: 2em ;
+}
+
+.button-submit {
+  span {
+    color: $white-color;
+  }
+
+}
+
+.break-word{
+  word-break: break-word;
+}

@@ -1,0 +1,265 @@
+@import '../../../../core/styles/variables';
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+.mat-paginator-page-size .ng-star-inserted{ 
+  display: none;
+}
+mat-paginator-page-size-labe{
+  display: none;
+}
+.mat-paginator-page-size-labe{
+  display: none;
+}
+.mat-header-row {
+  display: none;
+}
+.card-paginator {
+  margin-top: -50px;
+  max-height: 20px;
+}
+
+.mat-row {
+  height: 60px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #b3ece8;
+  }
+}
+
+.normal-background-color {
+  background-color: $white-color;
+}
+
+.active-background-color {
+  background-color: #b3ece8;
+}
+
+td {
+  overflow: hidden;
+
+  &.mat-cell, &.mat-footer-cell, &mat-header-cell {
+    border-bottom-style: dashed;
+  }
+
+  &.mat-cell:nth-of-type(1) {
+    width: 25%;
+  }
+
+  &.mat-cell:nth-of-type(2) {
+    width: 20%;
+  }
+
+  &.mat-cell:nth-of-type(3) {
+    width: 30%;
+  }
+
+  &.mat-cell:nth-of-type(4) {
+    width: 15%;
+  }
+
+  &.mat-cell:nth-of-type(5) {
+    width: 10%;
+  }
+
+  &.mat-cell:last-of-type {
+    padding-right: 0;
+  }
+}
+
+.mat-menu-item {
+  span {
+    color: $light-gray-font;
+    font-weight: bold;
+    font-size: $font-size-12;
+  }
+
+  .mat-icon {
+    margin-right: 5px;
+  }
+}
+
+.status-option-btn {
+  text-align: center;
+}
+
+::ng-deep.mat-menu-panel {
+  min-height: 0;
+  width: auto;
+}
+
+mat-card-title {
+  h2 {
+    line-height: 3;
+    font-weight: bold;
+    font-size: $font-size-16;
+    color: mat-color($primary);
+  
+  }
+}
+
+mat-card-header {
+  height: 50px;
+
+  ::ng-deep.mat-card-header-text {
+    margin: 0 !important;
+  }
+}
+
+.title {
+  font-weight: bold;
+  font-size: $font-size-12;
+  color: $gray-font;
+  max-width: 150px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.subtitle {
+  font-size: $font-size-10;
+  color: $light-gray-font;
+  max-width: 150px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.mat-card-content {
+  max-height: 400px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+
+  &:hover, &:focus {
+    overflow-y: auto;
+  }
+}
+
+.empty-container {
+    img {
+      width: 50%;
+      height: 50%;
+    }
+  
+    span {
+      color: $light-gray-font;
+    }
+  }
+  
+  
+  .date {
+    font-size: $font-size-14;
+    color: mat-color($primary);
+  }
+  
+  .content {
+    font-size: $font-size-12;
+    color: $light-gray-font;
+  
+    .content-note {
+      color: mat-color($primary);
+      font-weight: bold;
+    }
+  }
+  
+  
+  
+
+.menu-form-wrapper .mat-menu-content:not(:empty) {
+  padding: 0;
+}
+
+.menu-form {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+
+  .mat-form-field-appearance-outline {
+    font-size: $font-size-12;
+  }
+
+  mat-label, a {
+    font-size: $font-size-12;
+    color: mat-color($primary);
+  }
+
+  a {
+    cursor: pointer;
+  }
+
+  .titulo-label {
+    font-size: $font-size-14;
+    font-weight: bold;
+    margin-bottom: 10%;
+  }
+}
+
+::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+  padding: 0.4em 0 !important;
+}
+
+::ng-deep .mat-form-field-label-wrapper {
+  top: -1.5em;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+  transform: translateY(-1.1em) scale(.75);
+  width: 133.33333%;
+}
+
+@media screen and (max-width: 1279px) {
+  .title {
+    max-width: 110px;
+  }
+
+  .subtitle {
+    max-width: 110px;
+  }
+}
+
+@media screen and (max-width: 959px) {
+  .title {
+    max-width: 100px;
+  }
+
+  .subtitle {
+    max-width: 100px;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .title {
+    max-width: 60px;
+  }
+
+  .subtitle {
+    max-width: 60px;
+  }
+
+  td {
+    &.mat-cell:nth-of-type(1) {
+      width: 25%;
+    }
+
+    &.mat-cell:nth-of-type(2) {
+      width: 0;
+    }
+
+    &.mat-cell:nth-of-type(3) {
+      width: 25%;
+    }
+
+    &.mat-cell:nth-of-type(4) {
+      width: 20%;
+    }
+
+    &.mat-cell:nth-of-type(5) {
+      width: 20%;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+@import '../../../core/styles/variables';
+
+label{
+  margin-top:15px;
+  color:$light-gray-font;
+  font-weight: bold;
+  font-size: $font-size-18;
+ }
+
+
+input[type="file"] {
+    display: none;
+}

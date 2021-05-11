@@ -1,0 +1,38 @@
+@import '../../../core/styles/variables';
+.title {
+  font-weight: bold;
+  font-size: $font-size-28;
+  color: $light-gray-font;
+  text-align: center;
+}
+
+.font-color-span{
+  color:$light-gray-font;
+  font-size: $font-size-16;
+  margin-top: 10px;
+  margin-right: 1em;
+}
+.font-color-link{
+  color:$dark-primary;
+  font-size: $font-size-16;
+  margin-top: 10px;
+  margin-right: 1em;
+}
+
+.mensaje {
+  font-size: $font-size-18;
+  color: $light-gray-font;
+  margin-bottom: 2em ;
+}
+.a-password-recovery {
+  color: $light-gray-font;
+  font-size: $font-size-14;
+  cursor: pointer !important;
+}
+
+.button-submit {
+  span {
+    color: $white-color;
+  }
+
+}

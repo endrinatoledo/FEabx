@@ -1,0 +1,51 @@
+@import '../../../../core/styles/variables';
+.main-container{background: WHITE; border-radius: 10px;}
+.padding{padding-left: 1em;}
+.margin{margin-top: 2px;}
+
+.title {
+    color: mat-color($primary);
+    font-weight: bold;
+    font-size: $font-size-14;
+    margin-left: 1em;
+    margin-bottom: 1em;
+    margin-top: 1em;
+  }
+  .sub-title {
+    color:mat-color($primary);
+    font-weight: bold;
+    font-size: $font-size-14;
+    margin-bottom: 1em;
+    margin-top: 1em;
+  }
+  button{
+    width: 98%;
+  }
+  .button-submit {
+    span {
+      color: $white-color;
+    }  
+  }  
+  .cont-span {
+    color:$light-gray-font;
+    font-size: $font-size-14;
+    margin-bottom: 2em;
+  }
+  .cont-title {
+    font-weight: bold;
+    color:$light-gray-font;
+    font-size: $font-size-14;
+    margin-bottom: 2em;
+  }
+  
+  @media (max-width:500px){
+
+    .span-reposive{
+      padding-left: 1em;
+  
+    }
+    .bottom-reposive{
+      padding-bottom: 10px;
+    }
+    
+  }  

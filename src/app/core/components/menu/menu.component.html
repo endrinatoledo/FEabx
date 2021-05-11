@@ -1,0 +1,54 @@
+<ng-container class="menu-container">
+  <!--Has submenu and screen > 599px-->
+  <button fxHide fxShow.gt-xs mat-button class="menu-button"
+          *ngIf="x.submenus != null"
+          [matMenuTriggerFor]="menu"
+          [ngStyle]="{'background' : active == x.id ? '#20809a' : 'none'}"
+          matTooltip="{{x.name}}">
+    <mat-icon>{{x.icon}}</mat-icon>
+  </button>
+  <mat-menu fxHide fxShow.gt-xs #menu="matMenu" yPosition="below" xPosition="after">
+    <ng-template matMenuContent>
+      <button *ngFor="let submenu of x.submenus" mat-menu-item
+              [routerLink]="[submenu.routerLink]">
+        {{submenu.name}}
+      </button>
+    </ng-template>
+  </mat-menu>
+  <!--Does not have submenu and screen > 599px-->
+  <button fxHide fxShow.gt-xs mat-button class="menu-button"
+          *ngIf="x.submenus == null"
+          [routerLink]="[x.routerLink]"
+          [ngStyle]="{'background' : active == x.id ? '#20809a' : 'none'}"
+          matTooltip="{{x.name}}">
+    <mat-icon>{{x.icon}}</mat-icon>
+  </button>
+  <!--Has submenu and screen <= 599px-->
+  <div fxHide fxShow.lt-sm *ngIf="x.submenus != null">
+    <ul>
+      <li>
+        <button fxHide fxShow.lt-sm mat-button class="menu-button"
+                [ngStyle]="{'background' : active == x.id ? '#20809a' : 'none'}"
+                (click)="show = !show">
+          <mat-icon>{{x.icon}}</mat-icon>
+          <span class="m-left-10p">{{x.name}}</span>
+        </button>
+        <ul *ngIf="show">
+          <li class="submenu-li" *ngFor="let submenu of x.submenus">
+            - <a class="submenu-a" [routerLink]="[submenu.routerLink]">{{submenu.name}}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <!--Does not have submenu and screen <=  599px-->
+  <button fxHide fxShow.lt-sm mat-button class="menu-button"
+          [routerLink]="[x.routerLink]"
+          [ngStyle]="{'background' : active == x.id ? '#20809a' : 'none'}"
+          *ngIf="x.submenus == null">
+    <mat-icon>{{x.icon}}</mat-icon>
+    <span class="m-left-10p">{{x.name}}</span>
+  </button>
+
+</ng-container>
+

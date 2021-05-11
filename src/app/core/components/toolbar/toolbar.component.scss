@@ -1,0 +1,86 @@
+@import '../../styles/variables';
+
+.toolbar {
+  z-index: 2;
+  background-color: $white-color;
+}
+
+.avatar-button {
+  cursor: pointer;
+}
+
+::ng-deep.mat-menu-content:not(:empty) {
+  padding: 0 !important;
+  width: 250px;
+}
+
+.user-container {
+  pointer-events: none;
+  background-color: mat-color($primary);
+
+  h4 {
+    color: $white-color;
+    text-align: center;
+  }
+}
+
+.mat-menu-item {
+
+  &.mat-icon {
+    margin-right: 8px;
+  }
+}
+
+.button-cerrar-sesion {
+  font-weight: bold;
+  font-size: $font-size-12;
+  color: mat-color($primary);
+}
+
+.search-bar {
+  input {
+    height: 28px;
+    border: none;
+    padding: 0;
+    border-radius: 15px;
+    outline: none;
+    color: #444;
+    width: 0;
+    overflow: hidden;
+    transition: 0.3s;
+
+    &.show {
+      padding: 0 8px;
+      width: 200px;
+    }
+  }
+}
+
+
+.p-menu-option {
+  width: 100%;
+  overflow: auto;
+  line-height: 1 !important;
+
+  .title {
+    font-weight: bold;
+    font-size: $font-size-12;
+    color: $gray-font;
+  }
+
+  .subtitle {
+    font-size: $font-size-10;
+    color: $light-gray-font;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .search-bar {
+    input {
+      &.show {
+        padding: 0 8px;
+        width: 100px;
+      }
+    }
+  }
+}

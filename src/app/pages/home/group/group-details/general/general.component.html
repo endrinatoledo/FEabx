@@ -1,0 +1,8 @@
+<div class="w-100 dashboard-container" fxLayout="column" fxLayoutGap="3%"
+     fxLayoutAlign="center center">
+  <div fxLayout="row" fxLayoutGap="3%" fxLayout.lt-sm="column" fxLayoutAlign="center start">
+    <app-progress-group fxLayout="column" fxFlex="50%" [ngStyle.lt-sm]="{'width.%' : 90}" class="dashboard-card-container"></app-progress-group>
+    <app-home-noti [view]="'general'" fxLayout="column" fxFlex="50%" [ngStyle.lt-sm]="{'width.%' : 90}" class="dashboard-card-container">
+    </app-home-noti>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+@import '../../../../core/styles/variables';
+
+.content-info {
+  cursor: pointer;
+  border: 0;
+  width: 100%;
+  height: 80px;
+
+  &:hover {
+    .circle {
+      border: 1px solid mat-color($primary);
+    }
+  }
+
+}
+
+.circle {
+  border-radius: 50%;
+  width: 5px;
+  height: 5px;
+  background-color: WHITE;
+  display: inline-block;
+  position: absolute;
+  border: 1px solid grey;
+}
+.verde{
+  background-color:green;
+}
+.color-blue{
+
+  background-color:blue;
+ }
+ .color-yellow{
+
+  background-color:yellow;
+ }
+ .color-oragen{
+
+  background-color:orange;
+ }
+ .color-red{
+
+  background-color:red;
+ }
+.color-green{
+  background-color:green;
+}
+.color-purple{
+  background-color:purple;
+}
+.color-gray{
+  background-color:gray;
+}
+.circle.big {
+  width: 50px;
+  height: 50px;
+  margin: 0.5em 1em 1em 2em;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+.pintar.big {
+  width: 50px;
+  height: 50px;
+  margin: 0.5em 1em 1em 2em;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+.one {
+  // left: -15px;
+  // top: -20px;
+  top: 0;
+  left: -7px;
+}
+.pintar{
+  border-radius: 50%;
+  width: 5px;
+  height: 5px;
+  background-color: WHITE;
+  display: inline-block;
+  position: absolute;
+  border: 2px solid mat-color($primary);
+  color:mat-color($primary)
+
+}
+.pintar .one,.pintar .two,.pintar .three,.pintar .four,.pintar .five{
+
+  border: 1px solid mat-color($primary);
+  color:mat-color($primary)
+
+}
+.two {
+  // top: 10px;
+  // left: -40px;
+  left: -15px;
+  top: 9px;
+}
+
+.three {
+  left: -17px;
+  top: 22px;
+}
+
+.four {
+  left: -13px;
+  top: 34px;
+}
+
+.five {
+  left: -4px;
+  top: 45px;
+}

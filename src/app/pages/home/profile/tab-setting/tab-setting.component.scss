@@ -1,0 +1,34 @@
+@import '../../../../core/styles/variables';
+
+mat-checkbox{
+
+    margin-left: 1em;
+}
+
+h3 , p,mat-checkbox,mat-slide-toggle {
+
+    color: $light-gray-font;
+
+}
+.margin-top,.margin-row
+{
+
+    margin-top: 1em;
+
+}
+
+.margin-row
+{
+
+    margin-top: 2em;
+
+}
+.margin-bottom{
+
+    margin-bottom: 1em;
+
+}
+.margin{
+    margin-top: 2em;
+
+}

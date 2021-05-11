@@ -1,0 +1,12 @@
+<div fxLayout="row" class="margin-botto"><a href="#">Dashboard</a></div>
+<div class="w-100 dashboard-container" fxLayout="column" fxLayoutGap="2%">
+        <div fxLayout="row" fxLayoutGap="3%" fxLayout.lt-sm="column" fxLayoutAlign="center center">
+                <app-meeting-information fxLayout="column" [meeting] = "meetingDetails" [participants]="partsMeetings" fxFlex="93%" [ngStyle.lt-sm]="{'width.%' : 93}" class="dashboard-card-container"  ></app-meeting-information>
+        </div>
+        <div fxLayout="row" fxLayoutGap="3%" fxLayout.lt-sm="column" fxLayoutAlign="center center">
+                <app-meeting-add  (dataNote)="selectDataNote($event)" (note)="selec($event)" [meeting] = "meetingDetails"  fxLayout="column" fxFlex="93%" [ngStyle.lt-sm]="{'width.%' : 93}" class="dashboard-card-container"  ></app-meeting-add>
+        </div>
+        <div fxLayout="row" fxLayoutGap="3%" fxLayout.lt-sm="column" fxLayoutAlign="center center">
+                <app-notes-meeting [dataEntry] = "data" [meeting] = "meetingDetails" fxLayout="column" fxFlex="93%" [ngStyle.lt-sm]="{'width.%' : 93}" class="dashboard-card-container"  ></app-notes-meeting>
+        </div>
+</div>

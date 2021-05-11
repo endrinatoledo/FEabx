@@ -1,0 +1,91 @@
+
+<div fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <span class="title">{{title}}</span>
+    <span fxFlex></span>
+    <button mat-icon-button color="primary"  mat-dialog-close (click)="onCloseModal()">
+      <mat-icon>highlight_off</mat-icon>
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+  <form class="form-container" [formGroup]="formParticipant">
+    <div
+    fxLayout="row wrap"
+    fxLayoutAlign="center center"
+    fxLayoutGap="2%">
+      <div fxFlex="100% " fxFlex.lt-md="100%" fxFlex.lt-sm="100%">
+
+        <div fxLayout="row" fxLayoutGap="2%" fxLayout.lt-sm="row wrap"  fxLayoutAlign="center center">
+
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>
+              <mat-icon>persons</mat-icon>
+              Agregar a
+            </mat-label>
+            <mat-chip-list #userChipList aria-label="Usuario a agregar" ngDefaultControl formControlName="userByOrg">
+              <mat-chip *ngIf="selectedUser"
+                        [selectable]=true
+                        [removable]=true
+                        color="accent"
+                        (removed)="removeUser()">
+                <ngx-avatar *ngIf="selectedUser.img" [src]="selectedUser.img"
+                            size="20" class="avatar-container"></ngx-avatar>
+                <ngx-avatar *ngIf="!selectedUser.img" [name]="selectedUser.firstName + ' ' + selectedUser.lastName"
+                            size="20" class="avatar-container">
+                </ngx-avatar>
+                <span class="chip-content">{{selectedUser.firstName}} {{selectedUser.lastName}}</span>
+                <mat-icon matChipRemove *ngIf=true>cancel</mat-icon>
+              </mat-chip>
+              <input matInput
+                     formControlName="userByOrg"
+                     #userInput
+                     [matAutocomplete]=userAutoComplete
+                     [matChipInputFor]="userChipList"
+                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                     [matChipInputAddOnBlur]=true>
+            </mat-chip-list>
+            <mat-autocomplete #userAutoComplete="matAutocomplete" (optionSelected)="selectUser()">
+              <mat-option *ngFor="let user of usersFilteredOptions | async" [value]="user">
+                <div fxLayout="row" fxLayoutGap="2%" fxLayoutAlign="start center">
+                  <ngx-avatar src="{{user.img}}" [name]="user.firstName + ' ' + user.lastName"
+                              size="20" class="avatar-container">
+                  </ngx-avatar>
+                  <span class="title-span"
+                        matTooltip="{{user.firstName}} {{user.lastName}}">{{user.firstName}} {{user.lastName}}</span>
+                  <span class="subtitle-span" matTooltip="{{user.email}}">{{user.email}}</span>
+                </div>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+
+
+        <div fxLayout="row" fxLayoutGap="2%" fxLayout.lt-sm="row wrap"  fxLayoutAlign="center center"
+        style="padding-top: 15px; padding-bottom: 35px;">
+            <h5>
+              Si el usuario no está registrado en ABX, enviale una invitacion para que se una
+            </h5>
+
+        </div>
+        <div fxLayout="row" fxLayout.lt-sm="row wrap"  fxLayoutAlign="center center" style=" padding-bottom: 15px;">
+            <mat-form-field appearance="outline"  fxFlex="100%"  fxFlex.lt-sm="100%"     >
+                <mat-label>
+                  <mat-icon>group</mat-icon>
+                  Correo Electrónico
+                </mat-label>
+                <input matInput type="text" formControlName="email">
+                        <mat-error *ngIf="hasError('email', 'pattern')">
+                            <mat-icon>cancel</mat-icon>
+                            Debe introducir un correo válido
+                          </mat-error>
+            </mat-form-field>
+        </div>
+      </div>
+  </div>
+    <mat-divider></mat-divider>
+    <mat-dialog-actions fxLayoutAlign="center center">
+<!--      <button type="button" mat-button color="primary" mat-dialog-close (click)="onCloseModal()">Salir</button>-->
+      <button type="button" mat-raised-button color="primary" class="white-font-color" (click)="onSaveParticipant()" >Agregar</button>
+    </mat-dialog-actions>
+  </form>
+</div>

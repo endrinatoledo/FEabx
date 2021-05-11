@@ -1,0 +1,35 @@
+<div fxLayout="row" class="margin-botto"><a href="#">Dashboard</a></div>
+<div class="w-100 dashboard-container" fxLayout="column" fxLayoutGap="3%"
+     fxLayoutAlign="center center">
+  <app-group-container [selectGroupid]="this.groupId" class="w-100"
+                       (suplente)="getGroupsAsSuplent(httpService.userId)"
+                       (user)="getGroupsByUser(httpService.userId)"
+                       (leader)="getGroupsAsLeader($event)"
+                       (salida)="getGroupAssi($event)"
+                       (sightview)="generalView($event)"
+                       (rolInGroup)="rolToSelect($event)"
+                       [groups]="groups"
+                       [isLoadingGroups]="isLoadingGroups"></app-group-container>
+  <div fxLayout="row" fxLayoutGap="3%" fxLayout.lt-sm="column" fxLayoutAlign="center center">
+    <app-home-notes (noteId)="getId($event)" (selectId)="updateSelect($event)" fxLayout="column" fxFlex="60%" [ngStyle.lt-sm]="{'width.%' : 90}" class="dashboard-card-container"
+                    (assignmentsList)="getAssignList($event)"
+                    (agreementsList)="getAgreeList($event)"
+                    [groups]="groups"
+                    [assigmentStatus]="assigmentStatus"
+                    [members]="members"
+                    (activeNoteEvent)="onNoteChange($event)"
+                    [groupId]="this.groupId"
+                    [rolInGroup]="this.rolInGroup"
+                    [sightview]="this.sigthView"
+                    ></app-home-notes>
+    <app-home-noti fxLayout="column" fxFlex="30%" [ngStyle.lt-sm]="{'width.%' : 90}" class="dashboard-card-container"
+                   [noteId]="noteId"
+                   [noteTypeId]="noteTypeId"
+                   [noteTilte]="noteTilte"
+                   [groups]="groups"
+                   [assignments]="assignments"
+                   [agreements]="agreements"
+                   >
+    </app-home-noti>
+  </div>
+</div>

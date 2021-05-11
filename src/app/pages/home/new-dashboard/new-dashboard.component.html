@@ -1,0 +1,23 @@
+<div fxLayout="row" class="margin-botto"><a href="#">Dashboard</a></div>
+<div class="w-100 dashboard-container" fxLayout="column" fxLayoutGap="3%"
+     fxLayoutAlign="center center">
+  <app-group-container [selectGroupid]="this.groupId" class="w-100"  (salida)="getGroupAssi($event)" [groups]="groups"></app-group-container>
+    <div fxLayout="row" fxLayoutGap="3%" fxLayout.lt-sm="column" fxLayoutAlign="center center">
+        <app-table-meeting fxLayout="column" fxFlex="30%" [ngStyle.lt-sm]="{'width.%' : 90}" class="dashboard-card-container"
+          [groupId]="this.groupId"
+          [groups]="groups"
+          (activeMeetingEvent)="onNoteChangeMeeting($event)"
+        >
+        </app-table-meeting>
+    <app-home-notes (noteId)="getId($event)" (selectId)="updateSelect($event)" fxLayout="column" fxFlex="60%" [ngStyle.lt-sm]="{'width.%' : 90}" class="dashboard-card-container"
+                    [groups]="groups"
+                    [assigmentStatus]="assigmentStatus"
+                    [members]="members"
+                    (activeNoteEvent)="onNoteChange($event)"
+                    [groupId]="this.groupId"
+                    [meeting]="this.selectMeeting"
+                    >
+    </app-home-notes>
+  </div>
+</div>
+

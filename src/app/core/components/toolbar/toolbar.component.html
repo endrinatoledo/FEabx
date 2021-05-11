@@ -1,0 +1,139 @@
+<mat-toolbar class="toolbar">
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100">
+
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <button mat-icon-button color="primary" fxHide fxShow.lt-sm (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <div fxLayout="row" fxLayoutAlign="start center"
+           class="search-bar">
+        <input type="text" placeholder="Buscar"
+               class="mat-elevation-z3" [class.show]="toggleSearchBar">
+        <button mat-icon-button (click)="toggleSearchBar = !toggleSearchBar" type="button">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+
+      <button
+        mat-icon-button
+        color="primary"
+        aria-label="notificaciones"
+        matTooltip="notificaciones"
+        [matMenuTriggerFor]="notifications">
+        <mat-icon>
+          notifications
+          <span matBadge="{{numNotificationUser}}" matBadgeColor="warn"></span>
+        </mat-icon >
+      </button>
+
+      <mat-menu fxHide fxShow.gt-xs #notifications="matMenu" yPosition="below">
+
+        <ng-template matMenuContent>
+
+          <div mat-menu-item class="user-container" fxFlexAlign="center">
+            <h4>Notificaciones</h4>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <div mat-menu-item *ngFor="let notification of notificationsArr">
+
+            <div fxLayout="row" fxFlex="100%">
+
+              <mat-icon fxFlexAlign="center">priority_high</mat-icon>
+
+              <div fxLayout="column" fxFlex="100%" fxLayoutAlign="center">
+                <div fxFlex="60%" class="p-menu-option">
+                  <span class="title">
+                    {{notification.message ? (notification.message | slice: 0: 30) : ''}}
+                    {{notification.message ? (notification.message.length > 30 ? '...' : '') : ''}}
+                  </span>
+                  <!--                  <br>-->
+                  <!-- En esta linea hay que colocar la fecha o el tiempo que viene de la BD-->
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </ng-template>
+
+      </mat-menu>
+
+      <ngx-avatar name="{{username}}"
+                  class="avatar-button"
+                  [matMenuTriggerFor]="menu">
+      </ngx-avatar>
+
+      <mat-menu fxHide fxShow.gt-xs #menu="matMenu" yPosition="below">
+        <ng-template matMenuContent>
+          <div mat-menu-item class="user-container" fxFlexAlign="center">
+            <h4>{{username}}</h4>
+          </div>
+          <mat-divider></mat-divider>
+          <a mat-menu-item
+             [routerLink]="['/home/profile']">
+            <div fxLayout="row" fxFlex="100%">
+
+              <mat-icon fxFlexAlign="center">account_circle</mat-icon>
+
+              <div fxLayout="column" fxFlex="100%" fxLayoutAlign="center">
+                <div fxFlex="60%" class="p-menu-option">
+                  <span class="title">Mi perfil</span>
+                  <br>
+                  <span class="subtitle">Configuración de la cuenta</span>
+                </div>
+              </div>
+
+            </div>
+          </a>
+          <mat-divider></mat-divider>
+          <a mat-menu-item
+             [routerLink]="[]">
+            <div fxLayout="row" fxFlex="100%">
+
+              <mat-icon fxFlexAlign="center">group</mat-icon>
+
+              <div fxLayout="column" fxFlex="100%" fxLayoutAlign="center">
+                <div fxFlex="60%" class="p-menu-option">
+                  <span class="title">Mis grupos</span>
+                  <br>
+                  <span class="subtitle">Consulta actividad de grupos</span>
+                </div>
+              </div>
+
+            </div>
+          </a>
+          <mat-divider></mat-divider>
+          <a mat-menu-item
+             [routerLink]="[]">
+            <div fxLayout="row" fxFlex="100%">
+
+              <mat-icon fxFlexAlign="center">assignment</mat-icon>
+
+              <div fxLayout="column" fxFlex="100%" fxLayoutAlign="center">
+                <div fxFlex="60%" class="p-menu-option">
+                  <span class="title">Mis notas</span>
+                  <br>
+                  <span class="subtitle">Consulta y avance de notas</span>
+                </div>
+              </div>
+
+            </div>
+          </a>
+          <mat-divider></mat-divider>
+          <button mat-menu-item fxLayoutAlign="center center" (click)="logout()" [routerLink]="['/']">
+            <span class="button-cerrar-sesion">Cerrar sesión</span>
+          </button>
+        </ng-template>
+      </mat-menu>
+
+
+    </div>
+
+  </div>
+</mat-toolbar>

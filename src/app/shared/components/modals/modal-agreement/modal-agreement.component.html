@@ -1,0 +1,90 @@
+<div fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <span class="title">{{title}}</span>
+    <span fxFlex></span>
+    <button mat-icon-button color="primary" mat-dialog-close>
+      <mat-icon>highlight_off</mat-icon>
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+  <form class="form-container" [formGroup]="formGroup">
+    <div
+    fxLayout="row wrap"
+    fxLayoutAlign="center center"
+    fxLayoutGap="2%">
+      <div
+        fxFlex="80% "
+        fxFlex.lt-md="80%"
+        fxFlex.lt-sm="100%"
+      >
+      <mat-form-field appearance="outline" class="w-100">
+          <mat-label>
+            <mat-icon>group</mat-icon>
+            Grupo
+          </mat-label>
+          <input matInput type="text" formControlName="group" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="groupDisplayWith">
+            <mat-option *ngFor="let option of groupFilteredOptions | async" [value]="option">
+              {{option.name}}
+            </mat-option>
+          </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-100 m-top-1">
+        <mat-label>Reunion</mat-label>
+        <mat-select formControlName="meeting">
+          <mat-option *ngFor="let r of meetings" [value]="r" >
+          {{r.title}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>
+          Título
+        </mat-label>
+        <input matInput type="text" formControlName="title">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-100">
+          <mat-label>
+            Descripción
+          </mat-label>
+          <textarea matInput type="text" formControlName="summary"></textarea>
+      </mat-form-field>
+      <div fxLayout="row"  fxLayout.lt-sm="row wrap" fxLayoutGap="2%" fxLayoutAlign="center center">
+        <mat-form-field fxFlex="100%" appearance="outline">
+          <mat-label>
+            Origen
+          </mat-label>
+          <mat-select formControlName="origin">
+            <mat-option *ngFor="let origin of origins" [value]="origin.id">
+              <span class="break-line">{{origin.name}}</span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>
+          <mat-icon>label</mat-icon>
+          Etiquetas
+        </mat-label>
+        <mat-chip-list #tagsChipList aria-label="Etiqueta" ngDefaultControl formControlName="tag">
+          <mat-chip *ngFor="let tag of tags" [selectable]=true color="accent"
+                    [removable]=true (removed)="removeTag(tag)">
+            {{tag}}
+            <mat-icon matChipRemove *ngIf=true>cancel</mat-icon>
+          </mat-chip>
+          <input formControlName="tag"
+                 [matChipInputFor]="tagsChipList"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 [matChipInputAddOnBlur]=true
+                 (matChipInputTokenEnd)="addTag($event)">
+        </mat-chip-list>
+      </mat-form-field>
+    </div>
+  </div>
+    <mat-divider></mat-divider>
+    <mat-dialog-actions fxLayoutAlign="center center">
+      <button mat-button color="primary" mat-dialog-close>Cancelar</button>
+      <button mat-raised-button color="primary" class="white-font-color" (click)="onSave()">Guardar</button>
+    </mat-dialog-actions>
+  </form>
+</div>

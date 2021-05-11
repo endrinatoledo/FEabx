@@ -1,0 +1,58 @@
+@import '../../core/styles/variables';
+
+.img-inicio-box {
+  background-image: url("../../../assets/images/inicio-box.jpg");
+  background-size: 100% 100%;
+}
+
+.content {
+  flex: 1;
+}
+
+.img-logo-abx-container {
+  margin: 5%;
+}
+
+.img-logo-abx {
+  max-width: 85px;
+  max-height: 70px;
+}
+
+.img-logo-by-intelix {
+  max-width: 65px;
+}
+
+.banner-title {
+  font-weight: bold;
+  font-size: $font-size-22;
+  color: $white-color;
+  margin: 25% 5% 5%;
+}
+
+
+.banner-description {
+  font-size: $font-size-12;
+  color: $white-color;
+  margin: 0 5% 5%;
+}
+
+.banner-footer {
+  margin-left: 5%;
+  margin-bottom: auto;
+
+  div {
+    color: $light-gray-font;
+    font-size: $font-size-10;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .banner-title {
+    margin: 0 2% 2%;
+  }
+
+  .banner-description {
+    margin: 0 2% 2%;
+  }
+
+}

@@ -1,0 +1,84 @@
+@import '../../../../../core/styles/variables';
+
+.color-icons {
+  color: $dark-primary;
+  font-size: $font-size-28;
+}
+
+//.font{
+//    color:$light-gray-font;
+//    font-weight:bold;
+//
+//}
+//.card{
+//
+//    background: WHITE;
+//    margin-left: 0.5em;
+//
+//}
+//
+.groupName {
+  margin-top: 1em;
+  margin-left: 1em;
+}
+
+.margin-bottom {
+  margin-bottom: 1em;
+}
+
+.card p {
+  margin-bottom: 1em;
+}
+
+//
+//.card-add {
+//  min-height: 222px;
+//}
+
+.font {
+  color: $light-gray-font;
+  font-weight: bold;
+  font-size: $font-size-18;
+
+}
+
+.margin {
+  margin-top: 1em;
+}
+
+//.margin-buttom {
+//
+//  margin-top: 4.5em;
+//}
+
+
+.card-add {
+  min-height: 240px;
+  min-width: 300px;
+}
+
+.button-color {
+  border-color: $gray-font $gray-font;
+}
+
+.text-card {
+  width: 200px;
+  //justify-content: center;
+  //overflow:hidden;
+  //white-space:nowrap;
+  //text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+.contenedor-card {
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.contenedor-card-text {
+  min-height: 60px;
+}
+

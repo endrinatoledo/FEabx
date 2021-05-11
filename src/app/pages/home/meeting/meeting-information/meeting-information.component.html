@@ -1,0 +1,77 @@
+
+<div fxLayout="column" class="main-container">
+  <div fxLayout="row" >
+    <span class="title">Reunión - información general</span>
+  </div>
+  <form class="form-container"  [formGroup]="formCreateGroup">
+    <div
+        fxFlex.lt-sm="95%"
+        fxLayout="row wrap"
+        fxLayoutGap="1%"
+        fxLayoutAlign="center center"
+        >
+      <div
+        fxFlex="24% "
+        fxFlex.lt-md="24%"
+        fxFlex.lt-sm="32%"
+        class="padding"
+      >
+        <div  fxLayout="column" >
+          <span class="sub-title">Titulo:</span>
+          <span class="cont-title">{{meeting.title}}</span>
+        </div>
+      </div>
+      <div
+        fxFlex="24% "
+        fxFlex.lt-md="24%"
+        fxFlex.lt-sm="32%"
+      >
+        <div  fxLayout="column" >
+          <span class="sub-title">Invitados:</span>
+
+          <div *ngFor="let part of allParticipants">
+            <span *ngIf="part.firstName != null" style="color: #979797;font-size: 14px;"> {{part.firstName}} {{part.lastName}}<br/> </span>
+            <span *ngIf="part.firstName == null" style="color: #979797;font-size: 14px;"> {{part}} </span>
+          </div>
+
+        </div>
+      </div>
+      <div
+        fxFlex="14% "
+        fxFlex.lt-md="14%"
+        fxFlex.lt-sm="33%"
+
+      >
+      <div  fxLayout="column" >
+        <span class="sub-title">Fecha:</span>
+        <span class="cont-span" >{{meeting.date | date}}</span>
+      </div>
+    </div>
+      <div
+      fxFlex="10% "
+      fxFlex.lt-md="15%"
+      fxFlex.lt-sm="30%"
+      class="bottom-reposive"
+      >
+      <button mat-raised-button color="primary" class="white-font-color" >Cancelar</button>
+    </div>
+    <div
+      fxFlex="10% "
+      fxFlex.lt-md="15%"
+      fxFlex.lt-sm="30%"
+      class="bottom-reposive"
+      >
+      <button  [disabled]="buttonPrecloserAvailable" mat-raised-button color="primary"  class="button-submit"  (click)="precloseMeeting(meeting)" ><span>Pre-cerrar</span></button>
+
+    </div>
+    <div
+    fxFlex="10% "
+    fxFlex.lt-md="15%"
+    fxFlex.lt-sm="30%"
+    class="bottom-reposive"
+    >
+    <button  [disabled]="buttoncloserAvailable" mat-raised-button color="primary" class="white-font-color" class="button-submit"  (click)="closeMeeting(meeting)" ><span>Cerrar</span></button>
+  </div>
+    </div>
+  </form>
+</div>
